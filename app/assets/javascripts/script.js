@@ -54,6 +54,20 @@ $(document).ready(function(){
         }
     });
 
+    $(".q-paragraph-relation-box-title").click(function(){
+        if (relationBoxIsCollapsed == 1) {
+            $(".q-paragraph-relation-box-items").slideDown(300, function(){
+                relationBoxIsCollapsed = 0;
+                $(".q-paragraph-relation-box-switcher").html('Свернуть');
+            });
+        } else {
+           $(".q-paragraph-relation-box-items").slideUp(300, function(){
+                relationBoxIsCollapsed = 1;
+                $(".q-paragraph-relation-box-switcher").html('Развернуть');
+           });
+        }
+    });
+
    /*
     $(".paragraph-unit").mouseover(function(){
         $(this).addClass("p-highlight");
