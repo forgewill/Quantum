@@ -1,0 +1,2 @@
+module UProfileHelper
+end

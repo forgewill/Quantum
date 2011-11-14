@@ -1,0 +1,2 @@
+<h1><%= current_user.last_name + " " + current_user.first_name + " " + current_user.patronymic %></h1>
+<p><%= link_to "Выйти из системы", destroy_user_session_path, :method => :delete %></p>
