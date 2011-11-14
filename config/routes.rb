@@ -5,6 +5,8 @@ Quantum::Application.routes.draw do
 
   get "q_paragraph/show"
 
+  get "q_paragraph/relation"
+
   get "q_map/index"
 
   get "q_map/tree"

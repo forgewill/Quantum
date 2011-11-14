@@ -3,8 +3,34 @@
 <% end %>
 <span class="res-helpers">[id:<%= @paragraph.id %>] </span><%= @paragraph.title %>
 <h1><%= @paragraph.title %></h1>
+
+<div class="q-paragraph-relation-box">
+  <div class="q-paragraph-relation-box-title">Смысловые взаимосвязи параграфа:<span class="q-paragraph-relation-box-switcher">Развернуть</span></div>
+  <div class="q-paragraph-relation-box-items">
+     <% @rel_res["BasedOn"].each do |rel_r| %>
+      <div class="q-paragraph-relation-box-items-relType">Основывается на следующем:</div>
+      <span class="res-helpers">[ph:id:<%= rel_r.id %>] </span>
+      <%= link_to rel_r.title, q_paragraph_show_path() + "?id=" + rel_r.id %>
+  <% end %>
+  <% @rel_res["NeedToLearn"].each do |rel_r| %>
+      <div class="q-paragraph-relation-box-items-relType">Необходим для изучения следующего:</div>
+      <span class="res-helpers">[ph:id:<%= rel_r.id %>] </span>
+      <%= link_to rel_r.title, q_paragraph_show_path() + "?id=" + rel_r.id %>
+  <% end %>
+  </div>
+</div>
+
 <p>
   <%  @p_units.each do |unit| %>
-    <p class="paragraph-unit"><%=raw unit.body %></p>
-  <% end %>
+    <p class="q-paragraph-unit">
+    <h3><%= unit.title %></h3>
+    <% if unit.outgoing(:is_type).first != nil %>
+        <% if unit.outgoing(:is_type).first.title == 'Type_QParagraphLaw' %>
+            <div class="q-paragraph-law"><%=raw unit.body %></div>
+        <% end %>
+    <% else %>
+        <%=raw unit.body %>
+    <% end %>
+    </p>
+<% end %>
 </p>

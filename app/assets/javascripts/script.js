@@ -3,6 +3,7 @@
  */
 $(document).ready(function(){
     var menuIsCollapsed = 0;
+    var relationBoxIsCollapsed = 1;
 
     $("#index-Menu-ep").mouseover(function(){
         $(this).addClass("index-Menu-ep-state-hover");
@@ -30,6 +31,29 @@ $(document).ready(function(){
 
         }
     });
+
+    $(".q-paragraph-relation-box-switcher").mouseover(function(){
+        $(this).css("color", "#8d84d7");
+    });
+    $(".q-paragraph-relation-box-switcher").mouseout(function(){
+        $(this).css("color", "#8279c6");
+    });
+
+
+    $(".q-paragraph-relation-box-switcher").click(function(){
+        if (relationBoxIsCollapsed == 1) {
+            $(".q-paragraph-relation-box-items").slideDown(300, function(){
+                relationBoxIsCollapsed = 0;
+                $(".q-paragraph-relation-box-switcher").html('Свернуть');
+            });
+        } else {
+           $(".q-paragraph-relation-box-items").slideUp(300, function(){
+                relationBoxIsCollapsed = 1;
+                $(".q-paragraph-relation-box-switcher").html('Развернуть');
+           });
+        }
+    });
+
    /*
     $(".paragraph-unit").mouseover(function(){
         $(this).addClass("p-highlight");

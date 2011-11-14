@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/andreasronge/neo4j.git
-  revision: 30b6acda46fcc91cc5babf56dc4c1a203c54581a
+  revision: f09aea97b24f0abb2fdc6710a094997ceeb90186
   specs:
     neo4j (1.2.6-java)
       activemodel (>= 3.0.0)
@@ -58,10 +58,10 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.1.3)
-    devise (1.4.9)
+    devise (1.5.0)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
-      warden (~> 1.0.3)
+      warden (~> 1.1)
     devise-neo4j (1.0.3)
       devise (~> 1.3)
       neo4j (~> 1.1)
@@ -175,7 +175,7 @@ GEM
     uglifier (1.0.4)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
-    warden (1.0.6)
+    warden (1.1.0)
       rack (>= 1.0)
     will_paginate (3.0.pre4)
 
