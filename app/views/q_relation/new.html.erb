@@ -1,0 +1,18 @@
+<h1>Добавление связи между ресурсами</h1>
+<%= form_tag('create') do -%>
+    <div>
+      <%= label_tag 'ID ресурса-субъекта' %><br />
+      <%= text_field_tag 'idSubject' %>
+    </div>
+    <div>
+      <%= label_tag 'ID ресурса-объекта' %><br />
+      <%= text_field_tag 'idObject' %>
+    </div>
+    <div>
+      <%= label_tag 'Тип отношения' %><br />
+      <%= select_tag('rel_type', options_for_select([['Содержит в себе (Contains)', 'contains'], ['Состоит из (Consists Of)', 'consists_of'], ['Необходим для изучения (Need To Learn)', 'need_to_learn']], 1)) %>
+    </div>
+    <div>
+      <p><%= submit_tag "Сохранить" %></p>
+    </div>
+<% end -%>

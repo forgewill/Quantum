@@ -1,0 +1,49 @@
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+    <div id="authForm-container" class="registerForm">
+      <div class="authForm-header">
+        <div class="authForm-title">Регистрация</div>
+        <div class="authForm-alterAction">|&nbsp;&nbsp;
+          <%- if controller_name != 'sessions' %>
+              <%= link_to "Вход в систему", new_session_path(resource_name) %><br />
+          <% end -%>
+        </div>
+      </div>
+      <div class="clearBoth paddingBottom17px"></div>
+      <div class="authForm-fields">
+        <div class="field-Row">
+          <div class="field-Label">Фамилия</div>
+          <div class="field"><%= f.text_field :last_name, :size => "30", :class => "input-defaultField" %></div>
+          <div class="field-advInfo littleMsg">|&nbsp;&nbsp;обязательное поле</div>
+        </div>
+        <div class="clearBoth"></div>
+        <div class="field-Row">
+          <div class="field-Label">Имя</div>
+          <div class="field"><%= f.text_field :first_name, :size => "30", :class => "input-defaultField" %></div>
+          <div class="field-advInfo littleMsg">|&nbsp;&nbsp;обязательное поле</div>
+        </div>
+        <div class="clearBoth"></div>
+        <div class="field-Row">
+          <div class="field-Label">Отчество</div>
+          <div class="field"><%= f.text_field :patronymic, :size => "30", :class => "input-defaultField" %></div>
+          <div class="field-advInfo"></div>
+        </div>
+        <div class="clearBoth paddingBottom17px"></div>
+        <div class="field-Row">
+          <div class="field-Label">Адрес email</div>
+          <div class="field"><%= f.email_field :email, :size => "30", :class => "input-defaultField" %></div>
+          <div class="field-advInfo littleMsg">|&nbsp;&nbsp;обязательное поле</div>
+        </div>
+        <div class="clearBoth"></div>
+        <div class="field-Row">
+          <div class="field-Label">Пароль</div>
+          <div class="field"><%= f.password_field :password, :size => "30", :class => "input-defaultField" %></div>
+          <div class="field-advInfo littleMsg">|&nbsp;&nbsp;обязательное поле</div>
+        </div>
+      </div>
+      <div class="clearBoth"></div>
+      <div class="authForm-button">
+        <%= image_submit_tag("blue/forms/buttons/register.png", :class => "registerButton", :size => "193x42", :alt => "Зарегистрироваться") %>
+      </div>
+    </div>
+<% end %>

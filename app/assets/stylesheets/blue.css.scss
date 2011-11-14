@@ -1,0 +1,67 @@
+.clearBoth { clear: both; }
+.paddingBottom17px { padding-bottom: 17px; }
+
+input[type="text"], input[type="email"], input[type="password"], textarea, select { outline: 0; }
+
+html, body { width: 100%; height: 100%; }
+#blue-wrapper { font-family: Verdana; }
+#blueSpace-background { position: relative; color: white; min-height: 665px; height: 100%; min-width: 990px; width: 100%; background: image_url("blue/backgrounds/blue.jpg") repeat; overflow: hidden; }
+#blueGradientIMG { min-height: 665px; height: 100%; min-width: 990px; width: 100%; }
+#blueSpace-content { position: absolute; color: white; top: 0px; left: 50%; height: 100%; width: 970px; margin-left: -485px; }
+	#blueSpace-content a { color: #d7d4f2; }
+	#blueSpace-content a:hover { color: #fbfacc; }
+#globalHeader-background { position: absolute; background: image_url("blue/backgrounds/blue_logo_header_background.png") no-repeat 10% 50%; height: 87px; width: 100%; top: 2px; margin-left: -150px; z-index: 1000; }
+	#globalHeader-content .quantumLogo { margin-top: 23px; margin-left: 155px; }
+#authForm-container { position: absolute; width: 100%; }
+.signForm { height: 350px; top: 50%; margin-top: -150px; }
+.registerForm { height: 500px; top: 50%; margin-top: -240px; }
+	#authForm-container .authForm-header { width: 325px; margin: 0px auto; }
+	#authForm-container .authForm-header .authForm-title { float: left; font-size: 24px; background: image_url("blue/backgrounds/title_space.png") repeat; padding: 7px 11px 9px 11px; }
+	#authForm-container .authForm-header .authForm-alterAction { float: left; font-size: 11px; padding: 15px 11px 9px 10px; }
+		#authForm-container .authForm-header .authForm-alterAction a { color: #d7d4f2; }
+		#authForm-container .authForm-header .authForm-alterAction a:hover { color: #fbfacc; }
+	#authForm-container .authForm-fields { padding-left: 201px; }
+		#authForm-container .authForm-fields .field-Row { margin: 25px 0px 25px 0px; }
+			#authForm-container .authForm-fields .field-Row  .field-Label { float: left; color: #aba4c7; font-size: 14px; text-align: right; padding: 12px 30px 0px 0px; width: 87px; }
+			#authForm-container .authForm-fields .field-Row  .field-Label-hover { float: left; color: #c4bddb; font-size: 14px; text-align: right; padding: 12px 30px 0px 0px; width: 87px; }
+			#authForm-container .authForm-fields .field-Row  .field-Label-focus { float: left; color: #f7f5ff; font-size: 14px; text-align: right; padding: 12px 30px 0px 0px; width: 87px; }
+			#authForm-container .authForm-fields .field-Row .field { float: left; background: image_url("blue/forms/fields/default_field.png") no-repeat; width: 315px; height: 47px; }
+			#authForm-container .authForm-fields .field-Row .field-hover { float: left; background: image_url("blue/forms/fields/default_field_hover.png") no-repeat; width: 315px; height: 47px; }
+			#authForm-container .authForm-fields .field-Row .field-focus { float: left; background: image_url("blue/forms/fields/default_field_focus.png") no-repeat; width: 315px; height: 47px; }
+				#authForm-container .authForm-fields .field-Row .field .input-defaultField { color: white; font-size: 18px; margin-top: 11px; margin-left: 17px; background: transparent; border: none; }
+			#authForm-container .authForm-fields .field-Row .field-advInfo { float: left; font-size: 10px; padding: 15px 11px 9px 7px; }
+				#authForm-container .authForm-fields .field-Row .field-advInfo a { font-size: 11px; color: #d7d4f2; }
+				#authForm-container .authForm-fields .field-Row .field-advInfo a:hover { font-size: 11px; color: #fbfacc; }
+				.littleMsg { color: #9690a4; }
+	#authForm-container .authForm-button {  }
+		#authForm-container .authForm-button  .signButton { margin: 27px 0px 0px 528px; cursor: pointer; }
+		#authForm-container .authForm-button  .registerButton { margin: 27px 0px 0px 426px; cursor: pointer; }
+#blueSpace-footer { position: fixed; left: 0px; bottom: 10px; width: 100%; text-align: center; font-size: 10px; color: #77719e; }
+	#blueSpace-footer a { color: #77719e; }
+	#blueSpace-footer a:hover { color: #fbfacc; }
+#blueGroup-container { position: absolute; width: 100%; }
+.featureContent { height: 600px; top: 50%; margin-top: -250px; }
+	#featureDiagrams-stackContainer { position: absolute; width: 100%; height: 600px; top: 50%; margin-top: -300px; }
+		.firstFeatureDiagram { background: image_url("blue/features/diagrams/first_diagram.png") no-repeat; position: absolute; width: 100%; height: 600px; top: 50%; margin-top: -300px; }
+		.secondFeatureDiagram { display: none; background: image_url("blue/features/diagrams/second_diagram.png") no-repeat; position: absolute; width: 100%; height: 600px; top: 50%; margin-top: -300px; }
+		.thirdFeatureDiagram { display: none; position: absolute; width: 100%; height: 600px; top: 50%; margin-top: -300px; }
+		.fourthFeatureDiagram { display: none; position: absolute; width: 100%; height: 600px; top: 50%; margin-top: -300px; }
+		.fifthFeatureDiagram { display: none; position: absolute; width: 100%; height: 600px; top: 50%; margin-top: -300px; }
+.defaultIndexContent {  }
+	#featureHead-stackContainer { position: absolute; width: 320px; height: 100%; left: 645px; }
+		.firstFeatureDescription { position: absolute; width: 320px; }
+		.secondFeatureDescription { display: none; position: absolute; width: 320px; }
+		.thirdFeatureDescription { display: none; position: absolute; width: 320px; }
+		.fourthFeatureDescription { display: none; position: absolute; width: 320px; }
+		.fifthFeatureDescription { display: none; position: absolute; width: 320px; }
+			#featureTitle { font-size: 18px; background: image_url("blue/backgrounds/title_space.png") repeat; padding: 7px 11px 9px 11px; }
+			#featureDescription { padding-top: 5px; }
+				#featureDescription p { padding-top: 13px; }
+	#featureRoundGroup-container { position: absolute; width: 87px; height: 17px; top: 325px; left: 875px; }
+		.featurePageRounds { float: left; }
+			.roundFeatureButton { cursor: pointer; }
+	#inviteToRegister-container { position: absolute; width: 200px; top: 465px; left: 772px; }
+		#hLine191 { background: #6e6792; width: 191px; height: 1px; }
+		#inviteToReg-container { padding: 9px 0px 0px 27px; }
+			.inviteToReg-button {  }
+		#inviteToRegister-signLink { font-size: 10px; margin: -4px 0px 0px 85px; }

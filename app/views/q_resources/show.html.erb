@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>ID:</b>
+  <%= @q_resource.id %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @q_resource.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @q_resource.description %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @q_resource.body %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%= @q_resource.position %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @q_resource.url %>
+</p>
+
+<p>
+  <b>Note:</b>
+  <%= @q_resource.note %>
+</p>
+
+
+<%= link_to 'Edit', edit_q_resource_path(@q_resource) %> |
+<%= link_to 'Back', q_resources_path %>

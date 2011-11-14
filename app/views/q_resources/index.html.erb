@@ -1,0 +1,35 @@
+<h1>Список всех информационно-образовательных ресурсов</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Body</th>
+    <th>Position</th>
+    <th>Url</th>
+    <th>Note</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @q_resources.each do |q_resource| %>
+  <tr>
+    <td><%= q_resource.id %></td>
+    <td><%= q_resource.title %></td>
+    <td><%= q_resource.description %></td>
+    <td><%= q_resource.body %></td>
+    <td><%= q_resource.position %></td>
+    <td><%= q_resource.url %></td>
+    <td><%= q_resource.note %></td>
+    <td><%= link_to 'Показать', q_resource %></td>
+    <td><%= link_to 'Редактировать', edit_q_resource_path(q_resource) %></td>
+    <td><%= link_to 'Удалить', q_resource, :confirm => 'Вы уверены?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Добавить ресурс', new_q_resource_path %>

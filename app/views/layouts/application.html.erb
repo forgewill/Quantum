@@ -1,0 +1,87 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>Quantum / образовательная социальная сеть</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<%= stylesheet_link_tag    "application" %>
+	<%= csrf_meta_tags %>
+    <%= favicon_link_tag %>
+	<%= mathjax_tag %>
+</head>
+<body>
+
+<div id="container">
+	<header>
+		<div class="index-Panel">
+			<div class="ip-Content">
+				<div class="ip-Logo">
+                    <%= link_to(image_tag("header/index_panel/logo/logo.png", :size => "339x34", :alt => "Quantum / образовательная социальная сеть"), "/") %>
+				</div>
+				<div class="ip-Menu">
+					<div id="index-Menu-ep" class="index-Menu-ep-state">
+						Скрыть меню
+					</div>
+					<div id="profile-Menu-ep">
+						<%= link_to(image_tag("icons/user.png", :class => "profile-Icon", :size => "16x16", :alt => "Профиль", :align => "left")+ current_user.last_name + " " + current_user.first_name + " " + current_user.patronymic, "/") %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="second-Panel">
+			<div class="sp-Content">
+				<div class="limiter">
+					<%= image_tag("header/second_panel/limiter.png", :size => "4x20", :alt => "||") %>
+				</div>
+				<div class="item">
+					<%= link_to(image_tag("icons/plus-circle-frame.png", :size => "16x16", :class => "sp-icon", :align => "left", :alt => "+")+"Добавить ресурс", "/q_resources") %>
+				</div>
+                <div class="item">
+					<%= link_to(image_tag("icons/node-design.png", :size => "16x16", :class => "sp-icon", :align => "left", :alt => "+")+"Добавить связь", "/q_relation/new") %>
+				</div>
+				<div class="item">
+				    <%= link_to(image_tag("icons/node-magnifier.png", :size => "16x16", :class => "sp-icon", :align => "left", :alt => "S")+"Поиск", "/") %>
+				</div>
+			</div>
+		</div>
+		<div class="third-Panel">
+			<div class="tp-Content add-Res-SubMenu">
+				<div class="limiter">
+				    └
+				</div>
+				<div class="item">
+					<%= link_to "Простое добавление", new_q_resource_path %>
+				</div>
+				<div class="item">
+					<a href="#">Добавить теоретический ресурс</a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div id="main" role="main">
+        <%= yield %>
+	</div>
+	<footer>
+		<div class="copyright">
+			Copyright &copy; 2011 Developed by <a href="http://www.forgewill.ru">Forgewill</a> || &copy; <a href="http://p.yusukekamiyamane.com/">Icons</a>
+		</div>
+	</footer>
+</div> <!--! end of #container -->
+
+<%= javascript_include_tag "application" %>
+
+<!--[if lt IE 7 ]>
+	<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
+	<script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
+<![endif]-->
+
+</body>
+</html>

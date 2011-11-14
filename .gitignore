@@ -1,0 +1,6 @@
+.idea/
+.bundle
+db/
+log/*.log
+tmp/
+.sass-cache/
