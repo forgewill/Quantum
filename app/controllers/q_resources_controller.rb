@@ -1,4 +1,6 @@
 class QResourcesController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /q_resources
   # GET /q_resources.json
   def index
