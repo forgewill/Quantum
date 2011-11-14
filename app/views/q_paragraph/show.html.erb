@@ -5,6 +5,6 @@
 <h1><%= @paragraph.title %></h1>
 <p>
   <%  @p_units.each do |unit| %>
-    <p><%= unit.body %></p>
+    <p class="paragraph-unit"><%=raw unit.body %></p>
   <% end %>
 </p>
