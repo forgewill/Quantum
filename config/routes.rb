@@ -1,4 +1,6 @@
 Quantum::Application.routes.draw do
+  get "u_profile/index"
+
   get "q_paragraph/index"
 
   get "q_paragraph/show"

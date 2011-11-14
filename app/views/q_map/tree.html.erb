@@ -1,10 +1,11 @@
 <% @bread_crumbs.reverse_each do |res| %>
-    <%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %> →
+    <span class="resID-helpers">[id:<%= res.id %>] </span><%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %> →
 <% end %>
-<%= @root.title %>
+<span class="resID-helpers">[id:<%= @root.id %>] </span><%= @root.title %>
 <h1><%= @root.title %></h1>
 <% @hierarchy.each do |res| %>
     <p>
+      <span class="resID-helpers">[id:<%= res.id %>] </span>
       <%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %>
       <br /><span class="description-comment"><%= res.description %></span>
     </p>
