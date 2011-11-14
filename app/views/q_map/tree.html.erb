@@ -1,12 +1,21 @@
 <% @bread_crumbs.reverse_each do |res| %>
-    <span class="resID-helpers">[id:<%= res.id %>] </span><%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %> →
+    <span class="res-helpers">[id:<%= res.id %>] </span><%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %> →
 <% end %>
-<span class="resID-helpers">[id:<%= @root.id %>] </span><%= @root.title %>
+<span class="res-helpers">[id:<%= @root.id %>] </span><%= @root.title %>
 <h1><%= @root.title %></h1>
 <% @hierarchy.each do |res| %>
     <p>
-      <span class="resID-helpers">[id:<%= res.id %>] </span>
-      <%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %>
-      <br /><span class="description-comment"><%= res.description %></span>
+      <% if res.outgoing(:is_type).first != nil %>
+          <% if res.outgoing(:is_type).first.title == 'Type_QParagraph' %>
+              <span class="res-helpers">[ph:id:<%= res.id %>] </span>
+              <%= link_to res.title, q_paragraph_show_path() + "?id=" + res.id %>
+              <br /><span class="description-comment"><%= res.description %></span>
+          <% end %>
+      <% else %>
+          <span class="res-helpers">[id:<%= res.id %>] </span>
+          <%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %>
+          <br /><span class="description-comment"><%= res.description %></span>
+      <% end %>
+
     </p>
 <% end %>

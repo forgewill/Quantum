@@ -1,3 +1,7 @@
+<% QResource.find(params[:id]).incoming(:contains).depth(:all).reverse_each do |res| %>
+    <span class="res-helpers">[id:<%= res.id %>] </span><%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %> →
+<% end %>
+<span class="res-helpers">[id:<%= @paragraph.id %>] </span><%= @paragraph.title %>
 <h1><%= @paragraph.title %></h1>
 <p>
   <%  @p_units.each do |unit| %>
