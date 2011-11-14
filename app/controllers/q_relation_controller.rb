@@ -21,4 +21,16 @@ class QRelationController < ApplicationController
     @relation = Neo4j::Relationship.load(params[:rel_id])
   end
 
+  def delete
+  end
+
+  def destroy
+    Neo4j::Transaction.run do
+      @relation = Neo4j::Relationship.load(params[:idRelation])
+      @relation.del()
+    end
+
+    redirect_to :action => "index"
+  end
+
 end

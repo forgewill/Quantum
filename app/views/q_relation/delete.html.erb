@@ -1,0 +1,13 @@
+<h1>Удаление связи по ID</h1>
+<%= form_tag('destroy') do -%>
+
+    <p>
+      <%= label_tag 'ID связи' %><br />
+      <%= text_field_tag 'idRelation', nil, :class => "input-field" %>
+    </p>
+
+    <p>
+      <p><%= submit_tag "Удалить" %></p>
+    </p>
+
+<% end -%>

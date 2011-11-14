@@ -19,6 +19,10 @@ Quantum::Application.routes.draw do
 
   get "q_relation/show"
 
+  get "q_relation/delete"
+
+  post "q_relation/destroy"
+
   post "q_relation/create"
 
   resources :q_resources
