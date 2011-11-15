@@ -1,0 +1,22 @@
+<h1><%=raw @problem.title %></h1>
+<p>
+<h4><span class="res-helpers">[pr:id:<%= @problem.id %>] </span>Условие задачи</h4>
+<%=raw @problem.body %>
+<p class="pr-helpers">Источник: <%=raw @problem.isource %></p>
+</p>
+<% if @right == true %>
+<% else %>
+    <h4>Выбери верный ответ на задачу</h4>
+    <%= form_tag('solve') do -%>
+        <% @answers.each_with_index do |asw, index| %>
+            <p>
+              <span class="res-helpers"><%= index+1 %>.&nbsp;</span>
+              <%= radio_button_tag 'user_chose_answer', asw.id, false %>
+              <%= label_tag asw.body %>
+            </p>
+        <% end %>
+        <p><%= submit_tag "Ответить" %></p>
+    <% end -%>
+<% end %>
+
+

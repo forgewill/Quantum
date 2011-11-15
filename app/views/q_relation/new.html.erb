@@ -8,7 +8,7 @@
 
     <p>
       <%= label_tag 'Тип отношения' %><br />
-      <%= select_tag('rel_type', options_for_select([['Содержит в себе (Contains)', 'contains'], ['Состоит из (Consists Of)', 'consists_of'], ['Необходим для изучения (Need To Learn)', 'need_to_learn'], ['Тип (Is Type)', 'is_type']], 1), :class => "input-field") %>
+      <%= select_tag('rel_type', options_for_select([['Содержит в себе (Contains)', 'contains'], ['Состоит из (Consists Of)', 'consists_of'], ['Необходим для изучения (Need To Learn)', 'need_to_learn'], ['Тип (Is Type)', 'is_type'], ['Имеет ответ (Has Answer)', 'has_answer'], ['Имеет решение (Has Solution)', 'has_solution'], ['Выбрал ответ (Chose Answer)', 'chose_answer']], 1), :class => "input-field") %>
     </p>
 
     <p>

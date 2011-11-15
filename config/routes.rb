@@ -1,4 +1,12 @@
 Quantum::Application.routes.draw do
+  get "q_problem/index"
+
+  get "q_problem/show"
+
+  get "q_problem/solution"
+
+  post "q_problem/solve"
+
   get "u_profile/index"
 
   get "q_paragraph/index"

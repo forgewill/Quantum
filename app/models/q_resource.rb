@@ -17,6 +17,9 @@ class QResource < Neo4j::Rails::Model
   property :note, :type => String
   index :note, :type => :fulltext
 
+  property :isource, :type => String
+  index :isource, :type => :fulltext
+
   property :created_at, :type => DateTime
   index :created_at
 

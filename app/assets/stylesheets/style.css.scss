@@ -204,6 +204,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 h1 { color: #4b0b6c; font-size: 24px; }
 h2 { color: #4b0b6c; font-size: 18px; }
 h3 { color: #4b0b6c; font-size: 15px; }
+h4 { color: #4b0b6c; font-size: 13px; margin-bottom: 5px; }
    
 header .index-Panel { position: relative; z-index: 1000; color: white; background: image_url("header/index_panel/ipbg.png") repeat-x; width: 100%; height: 63px;}
 header .index-Panel .ip-Content { margin: 0 auto; width: 970px; }
@@ -239,13 +240,14 @@ header .third-Panel .tp-Content .item  a:hover { color: #671293; }
 #main { margin: 12px auto 0 auto; width: 940px; }
 
 .description-comment { font-size: 11px; }
-.res-helpers { font-size: 8px; color: grey; }
+.res-helpers { font-size: 8px; font-weight: normal; color: grey; }
+.pr-helpers { font-size: 10px; color: grey; }
 .q-paragraph-unit { }
 .q-paragraph-law { margin: 0 auto; width: 750px; padding: 10px 25px 10px 25px; border: 1px solid #dddcb2; background-color: #fbfacc; font-size: 12px; font-weight: bold; }
 .p-highlight { background-color: #fffff1; }
 
 .q-paragraph-relation-box { padding: 10px; border: 1px solid #e6e5ef; background-color: #fbfaff; }
-.q-paragraph-relation-box-title { color: #4b0b6c; font-size: 13px; font-weight: bold; }
+.q-paragraph-relation-box-title { color: #4b0b6c; font-size: 13px; font-weight: bold; cursor: pointer; }
 .q-paragraph-relation-box-switcher { margin-left: 605px; color: #8279c6; font-size: 10px; font-weight: normal; text-decoration: none; border-bottom: 1px dotted; cursor: pointer; }
 .q-paragraph-relation-box-items { display: none; }
 .q-paragraph-relation-box-items-relType { margin-top: 20px; font-size: 11px; font-weight: bold; margin-bottom: 5px; }
