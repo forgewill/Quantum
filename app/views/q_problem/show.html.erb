@@ -1,12 +1,22 @@
 <h1><%=raw @problem.title %></h1>
 <p>
 <h4><span class="res-helpers">[pr:id:<%= @problem.id %>] </span>Условие задачи</h4>
-<%=raw @problem.body %>
+<div class="q-problem-body"><%=raw @problem.body %></div>
 <p class="pr-helpers">Источник: <%=raw @problem.isource %></p>
 </p>
 <% if @right == true %>
+    <h4>Задача решена верно!</h4>
+    Ответ: <%= @asw_right.body %>
 <% else %>
-    <h4>Выбери верный ответ на задачу</h4>
+    <h4>История ответов</h4>
+    <% @answers.each_with_index do |asw, index| %>
+        <span class="res-helpers"><%= index+1 %>.&nbsp;</span>
+        <%= label_tag asw.body %>&nbsp;&nbsp;&nbsp;
+    <% end %>
+    <h4>Выбери верный ответ</h4>
+    <div class="q-problem-notice">
+      Будь внимательнее — не торопись в выбором ответа. Чем больше дано неверных ответов на задачу, тем меньшим количеством баллов она оценивается.
+    </div>
     <%= form_tag('solve') do -%>
         <% @answers.each_with_index do |asw, index| %>
             <p>
@@ -16,7 +26,7 @@
             </p>
         <% end %>
         <p><%= submit_tag "Ответить" %></p>
-    <% end -%>
+    <% end -%><h4>История неверных ответов</h4>
 <% end %>
 
 

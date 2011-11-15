@@ -14,6 +14,7 @@ class QProblemController < ApplicationController
 
     user = User.find(current_user.id)
     if user.rels(:chose_answer).find{|rel| rel.end_node == @asw_right}
+    #if user.rels(:chose_answer).outgoing.to_other(@asw_right)
       @right = true
     else
       @right = false

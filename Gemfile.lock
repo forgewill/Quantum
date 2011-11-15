@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/andreasronge/neo4j.git
-  revision: f09aea97b24f0abb2fdc6710a094997ceeb90186
+  revision: a91d68180f2de7c27f58498815f9657e083b4012
   specs:
     neo4j (1.2.6-java)
       activemodel (>= 3.0.0)
