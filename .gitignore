@@ -1,6 +1,7 @@
 .idea/
 .bundle
 db/
+public/uploads/
 log/*.log
 tmp/
 .sass-cache/

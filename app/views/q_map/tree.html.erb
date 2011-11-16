@@ -10,6 +10,7 @@
               <span class="res-helpers">[ph:id:<%= res.id %>] </span>
               <%= link_to res.title, q_paragraph_show_path() + "?id=" + res.id %>
               <br /><span class="description-comment"><%= res.description %></span>
+              <%=raw '<div class="tree-helpers">Источник: '+res.isource+'</div>' if res.isource && !res.isource.empty? %>
           <% end %>
       <% else %>
           <span class="res-helpers">[id:<%= res.id %>] </span>
