@@ -25,4 +25,7 @@ class QResource < Neo4j::Rails::Model
 
   property :updated_at, :type => DateTime
   index :updated_at
+
+  property :bfile, :type => String
+  mount_uploader :bfile, BinfileUploader
 end

@@ -1,45 +1,64 @@
-<%= form_for(@q_resource) do |f| %>
-  <% if @q_resource.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@q_resource.errors.count, "error") %> prohibited this q_resource from being saved:</h2>
+<%= form_for(@q_resource, :html => {:multipart => true}) do |f| %>
 
-      <ul>
-      <% @q_resource.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <% if @q_resource.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@q_resource.errors.count, "error") %> prohibited this q_resource from being saved:</h2>
+
+          <ul>
+            <% @q_resource.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title, :size => "72" %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title, :size => "72" %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description, :size => "75x5" %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body, :size => "75x7" %>
-  </div>
-  <div class="field">
-    <%= f.label :position %><br />
-    <%= f.number_field :position %>
-  </div>
-  <div class="field">
-    <%= f.label :url %><br />
-    <%= f.text_field :url %>
-  </div>
-  <div class="field">
-    <%= f.label :note %><br />
-    <%= f.text_field :note %>
-  </div>
-  <div class="field">
-    <%= f.label :isource %><br />
-    <%= f.text_field :isource %>
-  </div>
-  <div class="actions">
-    <p><%= f.submit %></p>
-  </div>
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_area :description, :size => "75x5" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :body %><br />
+      <%= f.text_area :body, :size => "75x7" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :position %><br />
+      <%= f.number_field :position %>
+    </div>
+
+    <div class="field">
+      <%= f.label :url %><br />
+      <%= f.text_field :url %>
+    </div>
+
+    <div class="field">
+      <%= f.label :note %><br />
+      <%= f.text_field :note %>
+    </div>
+
+    <div class="field">
+      <%= f.label :isource %><br />
+      <%= f.text_field :isource %>
+    </div>
+
+    <div class="field">
+      <%= image_tag(@q_resource.bfile_url) if @q_resource.bfile? %>
+      <%= f.hidden_field :bfile_cache %>
+      <%= f.file_field :bfile %>
+      <label>
+        <%= f.check_box :remove_bfile %>
+        Remove avatar
+      </label>
+    </div>
+
+    <div class="actions">
+      <p><%= f.submit %></p>
+    </div>
+
 <% end %>

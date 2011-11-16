@@ -30,6 +30,9 @@ gem 'devise-neo4j'
 #, :git => 'git://github.com/andreasronge/devise-neo4j.git'
 #gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
 
+#CarrierWave for Neo4j
+gem "carrierwave-neo4j", :require => "carrierwave/neo4j"
+
 #MathJax
 gem 'mathjax-rails', :git => 'git://github.com/pmq20/mathjax-rails.git'
 

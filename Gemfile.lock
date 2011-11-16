@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/andreasronge/neo4j.git
-  revision: a91d68180f2de7c27f58498815f9657e083b4012
+  revision: 087f3f5c34b02d8bcfaa2522edbf6955eb2b0d94
   specs:
     neo4j (1.2.6-java)
       activemodel (>= 3.0.0)
@@ -51,6 +51,11 @@ GEM
     bcrypt-ruby (3.0.1-java)
     bouncy-castle-java (1.5.0146.1)
     builder (3.0.0)
+    carrierwave (0.5.8)
+      activesupport (~> 3.0)
+    carrierwave-neo4j (1.0.0-java)
+      carrierwave (~> 0.5)
+      neo4j (~> 1.1)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
       railties (~> 3.1.0)
@@ -172,7 +177,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.31)
-    uglifier (1.0.4)
+    uglifier (1.1.0)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
     warden (1.1.0)
@@ -183,6 +188,7 @@ PLATFORMS
   java
 
 DEPENDENCIES
+  carrierwave-neo4j
   coffee-rails (~> 3.1.1)
   devise-neo4j
   jquery-rails

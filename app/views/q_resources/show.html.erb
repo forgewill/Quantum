@@ -40,5 +40,10 @@
   <%= @q_resource.isource %>
 </p>
 
+<p>
+  <b>Binary file:</b>
+  <%= image_tag(@q_resource.bfile_url) if @q_resource.bfile? %>
+</p>
+
 <%= link_to 'Edit', edit_q_resource_path(@q_resource) %> |
 <%= link_to 'Back', q_resources_path %>

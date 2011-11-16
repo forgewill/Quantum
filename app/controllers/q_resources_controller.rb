@@ -42,15 +42,17 @@ class QResourcesController < ApplicationController
   # POST /q_resources
   # POST /q_resources.json
   def create
-    @q_resource = QResource.new(params[:q_resource])
-
-    respond_to do |format|
-      if @q_resource.save
-        format.html { redirect_to @q_resource, :notice => 'Q resource was successfully created.' }
-        format.json { render :json => @q_resource, :status => :created, :location => @q_resource }
-      else
-        format.html { render :action => "new" }
-        format.json { render :json => @q_resource.errors, :status => :unprocessable_entity }
+    Neo4j::Transaction.run do
+      @q_resource = QResource.new(params[:q_resource])
+      @q_resource.save!
+      respond_to do |format|
+        if @q_resource.save
+          format.html { redirect_to @q_resource, :notice => 'Q resource was successfully created.' }
+          format.json { render :json => @q_resource, :status => :created, :location => @q_resource }
+        else
+          format.html { render :action => "new" }
+          format.json { render :json => @q_resource.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end
@@ -58,15 +60,17 @@ class QResourcesController < ApplicationController
   # PUT /q_resources/1
   # PUT /q_resources/1.json
   def update
-    @q_resource = QResource.find(params[:id])
-
-    respond_to do |format|
-      if @q_resource.update_attributes(params[:q_resource])
-        format.html { redirect_to @q_resource, :notice => 'Q resource was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.json { render :json => @q_resource.errors, :status => :unprocessable_entity }
+    Neo4j::Transaction.run do
+      @q_resource = QResource.find(params[:id])
+      @q_resource.update_attributes!(params[:q_resource])
+      respond_to do |format|
+        if @q_resource.update_attributes(params[:q_resource])
+          format.html { redirect_to @q_resource, :notice => 'Q resource was successfully updated.' }
+          format.json { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.json { render :json => @q_resource.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end
@@ -75,6 +79,7 @@ class QResourcesController < ApplicationController
   # DELETE /q_resources/1.json
   def destroy
     @q_resource = QResource.find(params[:id])
+    @q_resource.bfile.remove!
     @q_resource.destroy
 
     respond_to do |format|
