@@ -7,7 +7,7 @@ module QParagraphHelper
           html << '<div class="q-paragraph-law">'+ unit.body + '</div>'
         when 'Type_QParagraphBlock' then
           html << '<h3>'+unit.title+'</h3>'
-          unit.outgoing(:consists_of).each { |block_unit| html << render_paragraph_unit(block_unit) }
+          unit.outgoing(:consists_of).sort_by(&:position).each { |block_unit| html << render_paragraph_unit(block_unit) }
       end
     else
       #html << '<h3>'+unit.title+'</h3>' #TODO remove and change schema by merging blocks

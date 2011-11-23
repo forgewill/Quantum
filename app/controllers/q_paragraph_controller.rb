@@ -7,7 +7,8 @@ class QParagraphController < ApplicationController
   def show
     if (params[:id] != nil)
       @paragraph = QResource.find(params[:id])
-      @p_units = @paragraph.outgoing(:consists_of).sort_by {|unit| unit[:position]}
+      #@p_units = @paragraph.outgoing(:consists_of).sort_by {|unit| unit[:position]}
+      @p_units = @paragraph.outgoing(:consists_of).sort_by(&:position)
 
       #Paragraph as SUBJECT, i.e. Paragraph -> object
       need_to_learn = @paragraph.outgoing(:need_to_learn)
