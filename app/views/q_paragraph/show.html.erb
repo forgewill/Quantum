@@ -7,7 +7,8 @@
 <div class="q-paragraph-relation-box">
   <div class="q-paragraph-relation-box-title">
     <%= image_tag("icons/blue-document-tree.png", :size => "16x16", :class => "q-paragraph-relation-box-switcher-icon", :align => "left", :alt => "↓") %>
-    Смысловые взаимосвязи параграфа:<span class="q-paragraph-relation-box-switcher">Развернуть</span>
+    Смысловые взаимосвязи параграфа:
+    <span class="q-paragraph-relation-box-switcher">Развернуть</span>
   </div>
   <div class="q-paragraph-relation-box-items">
     <% if @rel_res["BasedOn"] && !@rel_res["BasedOn"].empty? %>
@@ -31,10 +32,9 @@
   </div>
 </div>
 
-<p>
 <%  @p_units.each do |unit| %>
     <p class="q-paragraph-unit">
       <%=raw render_paragraph_unit(unit) %>
     </p>
 <% end %>
-</p>
+

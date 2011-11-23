@@ -34,9 +34,22 @@ $(document).ready(function(){
 
     $(".q-paragraph-relation-box-switcher").mouseover(function(){
         $(this).css("color", "#8d84d7");
+        $(".q-paragraph-relation-box").css("border", "1px solid #dad8ef");
     });
     $(".q-paragraph-relation-box-switcher").mouseout(function(){
         $(this).css("color", "#8279c6");
+        $(".q-paragraph-relation-box").css("border", "1px solid #e6e5ef");
+    });
+
+    $(".q-paragraph-relation-box-title").mouseover(function(){
+        $(".q-paragraph-relation-box-switcher").css("color", "#8d84d7");
+        $(".q-paragraph-relation-box").css("border", "1px solid #e0deef");
+        $(".q-paragraph-relation-box").css("background-color", "#f7f5fd");
+    });
+    $(".q-paragraph-relation-box-title").mouseout(function(){
+        $(".q-paragraph-relation-box-switcher").css("color", "#8279c6");
+        $(".q-paragraph-relation-box").css("border", "1px solid #e6e5ef");
+        $(".q-paragraph-relation-box").css("background-color", "#fbfaff");
     });
 
 
