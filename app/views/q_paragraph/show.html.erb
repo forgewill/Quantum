@@ -3,7 +3,7 @@
 <% end %>
 <span class="res-helpers">[id:<%= @paragraph.id %>] </span><%= @paragraph.title %>
 <h1><%= @paragraph.title %></h1>
-
+<%=raw '<p class="tree-helpers">Источник: '+@paragraph.isource+'</p>' if @paragraph.isource && !@paragraph.isource.empty? %>
 <div class="q-paragraph-relation-box">
   <div class="q-paragraph-relation-box-title">Смысловые взаимосвязи параграфа:<span class="q-paragraph-relation-box-switcher">Развернуть</span></div>
   <div class="q-paragraph-relation-box-items">
@@ -29,16 +29,9 @@
 </div>
 
 <p>
-  <%  @p_units.each do |unit| %>
+<%  @p_units.each do |unit| %>
     <p class="q-paragraph-unit">
-    <h3><%= unit.title %></h3>
-    <% if unit.outgoing(:is_type).first != nil %>
-        <% if unit.outgoing(:is_type).first.title == 'Type_QParagraphLaw' %>
-            <div class="q-paragraph-law"><%=raw unit.body %></div>
-        <% end %>
-    <% else %>
-        <%=raw unit.body %>
-    <% end %>
+      <%=raw render_paragraph_unit(unit) %>
     </p>
 <% end %>
 </p>

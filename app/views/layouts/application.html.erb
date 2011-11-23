@@ -42,7 +42,7 @@
           <%= image_tag("header/second_panel/limiter.png", :size => "4x20", :alt => "||") %>
         </div>
         <div class="item">
-          <%= link_to(image_tag("icons/plus-circle-frame.png", :size => "16x16", :class => "sp-icon", :align => "left", :alt => "+")+"Добавить ресурс", "/q_resources") %>
+          <%= link_to(image_tag("icons/plus-circle-frame.png", :size => "16x16", :class => "sp-icon", :align => "left", :alt => "+")+"Добавить ресурс", new_q_resource_path ) %>
         </div>
         <div class="item">
           <%= link_to(image_tag("icons/node-design.png", :size => "16x16", :class => "sp-icon", :align => "left", :alt => "+")+"Добавить связь", "/q_relation/new") %>
@@ -61,7 +61,7 @@
           └
         </div>
         <div class="item">
-          <%= link_to "Простое добавление", new_q_resource_path %>
+          <%= link_to "Все ресурсы", "/q_resources" %>
         </div>
         <div class="item">
           <a href="#">Добавить теоретический ресурс</a>
