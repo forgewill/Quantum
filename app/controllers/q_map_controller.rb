@@ -15,6 +15,10 @@ class QMapController < ApplicationController
   end
 
   def track
+    root_id = params[:root_id]
+    if root_id && !root_id.empty?
+      @root = QResource.find(root_id)
+    end
   end
 
 end
