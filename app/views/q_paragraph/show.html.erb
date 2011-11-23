@@ -5,7 +5,10 @@
 <h1><%= @paragraph.title %></h1>
 <%=raw '<p class="tree-helpers">Источник: '+@paragraph.isource+'</p>' if @paragraph.isource && !@paragraph.isource.empty? %>
 <div class="q-paragraph-relation-box">
-  <div class="q-paragraph-relation-box-title">Смысловые взаимосвязи параграфа:<span class="q-paragraph-relation-box-switcher">Развернуть</span></div>
+  <div class="q-paragraph-relation-box-title">
+    <%= image_tag("icons/blue-document-tree.png", :size => "16x16", :class => "q-paragraph-relation-box-switcher-icon", :align => "left", :alt => "↓") %>
+    Смысловые взаимосвязи параграфа:<span class="q-paragraph-relation-box-switcher">Развернуть</span>
+  </div>
   <div class="q-paragraph-relation-box-items">
     <% if @rel_res["BasedOn"] && !@rel_res["BasedOn"].empty? %>
         <div class="q-paragraph-relation-box-items-relType">Основывается на:</div>
