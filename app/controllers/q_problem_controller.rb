@@ -10,7 +10,7 @@ class QProblemController < ApplicationController
                                   MATCH (n)-[:has_answer]->(x)<-[:chose_answer]-(u)
                                   RETURN x.body",
                                   'problem_id' => @problem.id.to_i,
-                                  'user_id' => 81)
+                                  'user_id' => current_user.id.to_i)
 
     @solution = @problem.outgoing(:has_solution).depth(1).first.outgoing(:consists_of).sort_by(&:position)
 
