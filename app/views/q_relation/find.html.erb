@@ -1,0 +1,11 @@
+<h1>Найденные связи</h1>
+<% if !@relations.nil? %>
+    <% @relations.reverse_each do |rel| %>
+        <p>
+          ID связи: <%= rel.id %><br />
+          ID субъекта: <%= rel.start_node.id %><br />
+          Тип связи: <%= rel.rel_type %><br />
+          ID объекта: <%= rel.end_node.id %><br />
+        </p>
+    <% end %>
+<% end %>

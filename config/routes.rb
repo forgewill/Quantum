@@ -21,6 +21,10 @@ Quantum::Application.routes.draw do
 
   get "q_map/track"
 
+  get "q_relation/search"
+
+  post "q_relation/find"
+
   get "q_relation/index"
 
   get "q_relation/edit"

@@ -7,6 +7,8 @@ module QParagraphHelper
           html << '<div class="q-paragraph-law">'+ unit.body + '</div>'
         when 'Type_QParagraphBlock' then
           html << '<h3>'+unit.title+'</h3>'
+        when 'Type_QImageResource'
+          html << image_tag(unit.bfile_url)
           unit.outgoing(:consists_of).sort_by(&:position).each { |block_unit| html << render_paragraph_unit(block_unit) }
       end
     else

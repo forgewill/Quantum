@@ -1,0 +1,16 @@
+<h1>Поиск связи между ресурсами</h1>
+<%= form_tag('find') do -%>
+
+    <p>
+      <%= label_tag 'ID субъекта' %><br />
+      <%= text_field_tag 'idSubject', nil, :class => "input-field" %>
+    </p>
+
+    <p>
+      <%= label_tag 'ID объекта' %><br />
+      <%= text_field_tag 'idObject', nil, :class => "input-field" %>
+    </p>
+
+    <p><%= submit_tag "Найти" %></p>
+
+<% end -%>

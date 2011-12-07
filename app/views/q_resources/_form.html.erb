@@ -48,9 +48,8 @@
     </div>
 
     <div class="field">
-      <%= image_tag(@q_resource.bfile_url) if @q_resource.bfile? %>
-      <%= f.hidden_field :bfile_cache %>
       <%= f.file_field :bfile %>
+      <%= f.text_field :remote_bfile_url %>
       <label>
         <%= f.check_box :remove_bfile %>
         Remove bfile

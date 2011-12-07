@@ -10,6 +10,20 @@ class QRelationController < ApplicationController
   def new
   end
 
+  def find
+    Neo4j::Transaction.run do
+      subject = QResource.find(params[:idSubject]) if !params[:idSubject].empty?
+      object = QResource.find(params[:idObject]) if !params[:idObject].empty?
+
+      @relations = subject.rels() if !subject.nil? && object.nil?
+      @relations = object.rels() if !object.nil? && subject.nil?
+      @relations = subject.rels.to_other(object) if !object.nil? && !subject.nil?
+    end
+  end
+
+  def search
+  end
+
   def create
     Neo4j::Transaction.run do
       subj = QResource.find(params[:idSubject])

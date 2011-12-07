@@ -5,13 +5,26 @@
 <p class="pr-helpers">Источник: <%=raw @problem.isource %></p>
 </p>
 <% if @right == true %>
+    <h4>История ответов</h4>
+    <% @result_cypher.each_with_index do |asw, index| %>
+        <span class="res-helpers"><%= index+1 %>.&nbsp;</span>
+        <%= asw.first[1] %>&nbsp;&nbsp;&nbsp;
+    <% end %>
     <h4>Задача решена верно!</h4>
     Ответ: <%= @asw_right.body %>
 <% else %>
     <h4>История ответов</h4>
-    <% @answers.each_with_index do |asw, index| %>
+    <% @result_cypher.each_with_index do |asw, index| %>
         <span class="res-helpers"><%= index+1 %>.&nbsp;</span>
-        <%= label_tag asw.body %>&nbsp;&nbsp;&nbsp;
+        <%= label_tag asw.first[1] %>&nbsp;&nbsp;&nbsp;
+    <% end %>
+    <% if @result_cypher.count >= 2 %>
+        <h4>Решение задачи</h4>
+        <%  @solution.each do |unit| %>
+            <p class="q-paragraph-unit">
+              <%=raw render_paragraph_unit(unit) %>
+            </p>
+        <% end %>
     <% end %>
     <h4>Выбери верный ответ</h4>
     <div class="q-problem-notice">
@@ -26,7 +39,7 @@
             </p>
         <% end %>
         <p><%= submit_tag "Ответить" %></p>
-    <% end -%><h4>История неверных ответов</h4>
+    <% end -%>
 <% end %>
 
 
