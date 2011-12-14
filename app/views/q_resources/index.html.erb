@@ -7,9 +7,6 @@
     <th>Description</th>
     <th>Body</th>
     <th>P</th>
-    <th>Url</th>
-    <th>Note</th>
-    <th>Information source</th>
     <th></th>
     <th></th>
     <th></th>
@@ -22,9 +19,6 @@
     <td><%= q_resource.description %></td>
     <td><%= q_resource.body %></td>
     <td><%= q_resource.position %></td>
-    <td><%= q_resource.url %></td>
-    <td><%= q_resource.note %></td>
-    <td><%= q_resource.isource %></td>
     <td><%= link_to 'Показать', q_resource %></td>
     <td><%= link_to 'Редактировать', edit_q_resource_path(q_resource) %></td>
     <td><%= link_to 'Удалить', q_resource, :confirm => 'Вы уверены?', :method => :delete %></td>
