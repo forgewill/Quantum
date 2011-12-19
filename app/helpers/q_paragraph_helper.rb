@@ -6,7 +6,7 @@ module QParagraphHelper
         when 'Type_QParagraphLaw'
           html << '<div class="q-paragraph-law">'+ unit.body + '</div>'
         when 'Type_QParagraphDefinition'
-          html << '<div class="q-paragraph-law">'+ unit.body + '</div>'
+          html << '<div class="q-paragraph-definition">'+ unit.body + '</div>'
         when 'Type_QParagraphBlock' then
           html << '<h3>'+unit.title+'</h3>'
           unit.outgoing(:consists_of).sort_by(&:position).each { |block_unit| html << render_paragraph_unit(block_unit) }

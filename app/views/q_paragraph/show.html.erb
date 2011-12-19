@@ -32,6 +32,22 @@
   </div>
 </div>
 
+<div class="q-paragraph-relation-res-line margin-top-15"></div>
+<div class="q-paragraph-relation-res-items-box">
+  <div class="q-paragraph-relation-res-icon">
+    <%= image_tag("icons/cards-stack.png", :size => "16x16", :class => "q-paragraph-relation-box-switcher-icon", :align => "left", :alt => "↓") %>
+  </div>
+  <div class="q-paragraph-relation-res-item">
+    <span class="tree-helpers">1. </span><%= link_to "Задачи для решения", q_problem_index_path() + "?root_id=" + params[:id] %>
+    (5/15)
+  </div>
+  <div class="q-paragraph-relation-res-item">
+    <span class="tree-helpers">2. </span><a href="#">Файлы</a>
+    (4)
+  </div>
+</div>
+<div class="q-paragraph-relation-res-line margin-top-15"></div>
+
 <%  @p_units.each do |unit| %>
     <p class="q-paragraph-unit">
       <%=raw render_paragraph_unit(unit) %>
