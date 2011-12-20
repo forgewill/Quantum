@@ -11,6 +11,9 @@ class QResource < Neo4j::Rails::Model
   property :position, :type => Fixnum
   index :position
 
+  property :weight, :type => Fixnum
+  index :weight
+
   property :url, :type => String
   index :url
 
