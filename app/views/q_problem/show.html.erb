@@ -13,7 +13,7 @@
     <h4>Задача решена верно!</h4>
     Ответ: <%= @asw_right.body %>
 <% else %>
-    <h4>История ответов</h4>
+    <h4>История ответов:</h4>
     <% @result_cypher.each_with_index do |asw, index| %>
         <span class="res-helpers"><%= index+1 %>.&nbsp;</span>
         <%= label_tag asw.first[1] %>&nbsp;&nbsp;&nbsp;

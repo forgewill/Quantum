@@ -11,11 +11,12 @@ class QProblemController < ApplicationController
     @result_cypher = Neo4j.query("START n=node({problem_id}), u=node({user_id})
                                   MATCH (n)-[:has_answer]->(x)<-[:chose_answer]-(u)
                                   RETURN x.body",
-                                  'problem_id' => @problem.id.to_i,
-                                  'user_id' => current_user.id.to_i)
+                                 'problem_id' => @problem.id.to_i,
+                                 'user_id' => current_user.id.to_i)
 
-    @solution = @problem.outgoing(:has_solution).depth(1).first.outgoing(:consists_of).sort_by(&:position)
-
+    if @problem.outgoing(:has_solution).depth(1).first != nil
+      @solution = @problem.outgoing(:has_solution).depth(1).first.outgoing(:consists_of).sort_by(&:position)
+    end
 
     @answers.each do |asw|
       if asw.outgoing(:is_type).first.title == 'Type_QParagraphProblem-answer-R'
@@ -25,7 +26,7 @@ class QProblemController < ApplicationController
 
     user = User.find(current_user.id)
     if user.rels(:chose_answer).find{|rel| rel.end_node == @asw_right}
-    #if user.rels(:chose_answer).outgoing.to_other(@asw_right)
+      #if user.rels(:chose_answer).outgoing.to_other(@asw_right)
       @right = true
     else
       @right = false
