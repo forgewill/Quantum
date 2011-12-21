@@ -39,7 +39,7 @@
   </div>
   <div class="q-paragraph-relation-res-item">
     <span class="tree-helpers">1. </span><%= link_to "Задачи для решения", q_problem_index_path() + "?root_id=" + params[:id] %>
-    (5/15)
+    (<%= @problems_all_right.count %>/<%= @problems_all.count %>)
   </div>
   <div class="q-paragraph-relation-res-item">
     <span class="tree-helpers">2. </span><a href="#">Файлы</a>
