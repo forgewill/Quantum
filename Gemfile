@@ -24,6 +24,7 @@ gem 'jquery-rails'
 
 #Graph Database
 gem 'neo4j', :git => 'git://github.com/andreasronge/neo4j.git'
+gem 'neo4j-admin'
 
 #Authentication
 gem 'devise-neo4j', :git => 'git://github.com/andreasronge/devise-neo4j.git'
