@@ -8,7 +8,8 @@ class QProblemController < ApplicationController
     @problem = QResource.find(params[:problem_id]) if (params[:problem_id] != nil)
     @answers = @problem.outgoing(:has_answer).depth(1)
 
-    @result_cypher = Neo4j.query("START n=node({problem_id}), u=node({user_id})
+    ################## HISTORY OF ANSWERS ##############################################################################
+    @history_answers = Neo4j.query("START n=node({problem_id}), u=node({user_id})
                                   MATCH (n)-[:has_answer]->(x)<-[:chose_answer]-(u)
                                   RETURN x.body",
                                  'problem_id' => @problem.id.to_i,
@@ -31,6 +32,14 @@ class QProblemController < ApplicationController
     else
       @right = false
     end
+    ####################################################################################################################
+
+    @taxonomy_level = Neo4j.query("START n=node({problem_id}), t=node({tax_level_id})
+                                  MATCH (n)-[:refers_to]->(x)-[:is_type]->(t)
+                                  RETURN x.title",
+                                 'problem_id' => @problem.id.to_i,
+                                 'tax_level_id' => 198)
+
 
 
   end

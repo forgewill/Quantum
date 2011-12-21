@@ -1,12 +1,12 @@
 <h1><%=raw @problem.title %></h1>
 <p>
-<h4><span class="res-helpers">[pr:id:<%= @problem.id %>] </span>Условие задачи</h4>
+<h4><%= image_tag("icons/medal-bronze.png", :size => "16x16", :class => "q-problem-medal-icon", :align => "left", :alt => "medal") %>Вес задачи: <%= @problem.weight %> балла. Уровень усвоения — <% @taxonomy_level.each do |tax| %><%= link_to tax.first[1], "#" %><% end %></h4>
 <div class="q-problem-body"><%=raw @problem.body %></div>
 <p class="pr-helpers">Источник: <%=raw @problem.isource %></p>
 </p>
 <% if @right == true %>
     <h4>История ответов</h4>
-    <% @result_cypher.each_with_index do |asw, index| %>
+    <% @history_answers.each_with_index do |asw, index| %>
         <span class="res-helpers"><%= index+1 %>.&nbsp;</span>
         <%= asw.first[1] %>&nbsp;&nbsp;&nbsp;
     <% end %>
@@ -14,11 +14,11 @@
     Ответ: <%= @asw_right.body %>
 <% else %>
     <h4>История ответов:</h4>
-    <% @result_cypher.each_with_index do |asw, index| %>
+    <% @history_answers.each_with_index do |asw, index| %>
         <span class="res-helpers"><%= index+1 %>.&nbsp;</span>
         <%= label_tag asw.first[1] %>&nbsp;&nbsp;&nbsp;
     <% end %>
-    <% if @result_cypher.count >= 2 %>
+    <% if @history_answers.count >= 2 %>
         <h4>Решение задачи</h4>
         <%  @solution.each do |unit| %>
             <p class="q-paragraph-unit">
