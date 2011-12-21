@@ -22,7 +22,7 @@ class QParagraphController < ApplicationController
                                   'paragraph_id' => @paragraph.id.to_i,
                                   'qproblem_type_id' => 123)
       @problems_all_right = Neo4j.query("START n=node({paragraph_id}), u=node({user_id}), ts=node({qsolution_type_id}), tp=node({qproblem_type_id})
-                                  MATCH (n)<-[:refers_to]->(y)-[:is_type]->(tp), (y)-[:has_answer]->(x)-[:is_type]->(ts), (u)-[:chose_answer]->(x)
+                                  MATCH (n)<-[:refers_to]-(y)-[:is_type]->(tp), (y)-[:has_answer]->(x)-[:is_type]->(ts), (u)-[:chose_answer]->(x)
                                   RETURN y",
                                         'paragraph_id' => @paragraph.id.to_i,
                                         'user_id' => current_user.id.to_i,

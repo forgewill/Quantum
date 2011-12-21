@@ -10,6 +10,9 @@ module QParagraphHelper
         when 'Type_QParagraphBlock' then
           html << '<h3>'+unit.title+'</h3>'
           unit.outgoing(:consists_of).sort_by(&:position).each { |block_unit| html << render_paragraph_unit(block_unit) }
+        when 'Type_QParagraphSelfQuestionBlock' then
+          html << '<h3>Вопросы для самопроверки</h3>'
+          html << unit.body
         when 'Type_QImageResource'
           html << image_tag(unit.bfile_url)
         when 'Type_QPlaceHolder' then
