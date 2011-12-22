@@ -1,6 +1,6 @@
 <h1><%=raw @problem.title %></h1>
 <p>
-<h4><%= image_tag("icons/medal-bronze.png", :size => "16x16", :class => "q-problem-medal-icon", :align => "left", :alt => "medal") %>Вес задачи: <%= @problem.weight %> балла. Уровень усвоения — <% @taxonomy_level.each do |tax| %><%= link_to tax.first[1], "#" %><% end %></h4>
+<h4><%= image_tag("icons/medal-bronze.png", :size => "16x16", :class => "q-problem-medal-icon", :align => "left", :alt => "medal") %>Вес задачи: <%= @problem.weight %> балла. Уровень усвоения — <% @taxonomy_level.each do |tax| %><%= link_to tax.first[1], "/q_paragraph/show?id=168" %><% end %></h4>
 <div class="q-problem-body"><%=raw @problem.body %></div>
 <p class="pr-helpers">Источник: <%=raw @problem.isource %></p>
 </p>
