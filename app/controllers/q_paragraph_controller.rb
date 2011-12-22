@@ -28,6 +28,11 @@ class QParagraphController < ApplicationController
                                         'user_id' => current_user.id.to_i,
                                         'qsolution_type_id' => 126,
                                         'qproblem_type_id' => 123)
+
+      @sum = 0;
+      @problems_all_right.each do |s|
+        @sum = @sum + QResource.find(s.first[1].id).weight
+      end
       ##########################
     end
   end
