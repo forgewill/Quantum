@@ -4,6 +4,7 @@
 $(document).ready(function(){
     var menuIsCollapsed = 0;
     var relationBoxIsCollapsed = 1;
+    var knwLevelBoxIsCollapsed = 1;
 
     $("#index-Menu-ep").mouseover(function(){
         $(this).addClass("index-Menu-ep-state-hover");
@@ -53,6 +54,30 @@ $(document).ready(function(){
     });
 
 
+
+    $(".q-paragraph-knw-level-box-switcher").mouseover(function(){
+        $(this).css("color", "#8d84d7");
+        $(".q-paragraph-knw-level-box").css("border", "1px solid #dad8ef");
+    });
+    $(".q-paragraph-knw-level-box-switcher").mouseout(function(){
+        $(this).css("color", "#8279c6");
+        $(".q-paragraph-knw-level-box").css("border", "1px solid #e6e5ef");
+    });
+
+    $(".q-paragraph-knw-level-box-title").mouseover(function(){
+        $(".q-paragraph-knw-level-box-switcher").css("color", "#8d84d7");
+        $(".q-paragraph-knw-level-box").css("border", "1px solid #e0deef");
+        $(".q-paragraph-knw-level-box").css("background-color", "#f7f5fd");
+    });
+    $(".q-paragraph-knw-level-box-title").mouseout(function(){
+        $(".q-paragraph-knw-level-box-switcher").css("color", "#8279c6");
+        $(".q-paragraph-knw-level-box").css("border", "1px solid #e6e5ef");
+        $(".q-paragraph-knw-level-box").css("background-color", "#fbfaff");
+    });
+
+
+
+
     $(".q-paragraph-relation-box-switcher").click(function(){
         if (relationBoxIsCollapsed == 1) {
             $(".q-paragraph-relation-box-items").slideDown(300, function(){
@@ -77,6 +102,36 @@ $(document).ready(function(){
            $(".q-paragraph-relation-box-items").slideUp(300, function(){
                 relationBoxIsCollapsed = 1;
                 $(".q-paragraph-relation-box-switcher").html('Развернуть');
+           });
+        }
+    });
+
+
+
+    $(".q-paragraph-knw-level-box-switcher").click(function(){
+        if (knwLevelBoxIsCollapsed == 1) {
+            $(".q-paragraph-knw-level-box-items").slideDown(300, function(){
+                knwLevelBoxIsCollapsed = 0;
+                $(".q-paragraph-knw-level-box-switcher").html('Свернуть');
+            });
+        } else {
+           $(".q-paragraph-knw-level-box-items").slideUp(300, function(){
+                knwLevelBoxIsCollapsed = 1;
+                $(".q-paragraph-knw-level-box-switcher").html('Развернуть');
+           });
+        }
+    });
+
+    $(".q-paragraph-knw-level-box-title").click(function(){
+        if (knwLevelBoxIsCollapsed == 1) {
+            $(".q-paragraph-knw-level-box-items").slideDown(300, function(){
+                knwLevelBoxIsCollapsed = 0;
+                $(".q-paragraph-knw-level-box-switcher").html('Свернуть');
+            });
+        } else {
+           $(".q-paragraph-knw-level-box-items").slideUp(300, function(){
+                knwLevelBoxIsCollapsed = 1;
+                $(".q-paragraph-knw-level-box-switcher").html('Развернуть');
            });
         }
     });

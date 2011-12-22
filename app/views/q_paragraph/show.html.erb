@@ -1,9 +1,12 @@
 <% QResource.find(params[:id]).incoming(:contains).depth(:all).reverse_each do |res| %>
     <span class="res-helpers">[id:<%= res.id %>] </span><%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %> →
 <% end %>
+
 <span class="res-helpers">[id:<%= @paragraph.id %>] </span><%= @paragraph.title %>
 <h1><%= @paragraph.title %></h1>
+
 <%=raw '<p class="tree-helpers">Источник: '+@paragraph.isource+'</p>' if @paragraph.isource && !@paragraph.isource.empty? %>
+
 <div class="q-paragraph-relation-box">
   <div class="q-paragraph-relation-box-title">
     <%= image_tag("icons/blue-document-tree.png", :size => "16x16", :class => "q-paragraph-relation-box-switcher-icon", :align => "left", :alt => "↓") %>
@@ -29,6 +32,17 @@
             </div>
         <% end %>
     <% end %>
+  </div>
+</div>
+
+<div class="q-paragraph-knw-level-box">
+  <div class="q-paragraph-knw-level-box-title">
+    <%= image_tag("icons/category.png", :size => "16x16", :class => "q-paragraph-relation-box-switcher-icon", :align => "left", :alt => "Уровни") %>
+    Уровень усвоения параграфа:
+    <span class="q-paragraph-knw-level-box-switcher">Развернуть</span>
+  </div>
+  <div class="q-paragraph-knw-level-box-items">
+    sdfsdfsdf
   </div>
 </div>
 
