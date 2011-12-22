@@ -2,8 +2,14 @@
 <%=raw '<p class="tree-helpers">Относятся к дидактической единице, ID: ' + params[:root_id] + '</p>' %>
 <% @p_ref_d.each_with_index do |prd, index| %>
     <p>
-      <span class="res-helpers"><%= index+1 %>.&nbsp;</span>
-      <span class="res-helpers">[id:<%= prd.first[1].id %>] </span>
-      <%= link_to QResource.find(prd.first[1].id).title, QResource.find(prd.first[1].id).id %>
+      <div class="q-problem-tick-div">
+        <%= image_tag("icons/24/tick.png", :size => "24x24", :alt => "Задача решена верно") if problem_is_right(prd.first[1].id.to_i) %>
+      </div>
+      <div>
+        <span class="res-helpers"><%= index+1 %>.&nbsp;</span>
+        <span class="res-helpers">[id:<%= prd.first[1].id %>] </span>
+        <%= link_to QResource.find(prd.first[1].id).title, "show?problem_id=" + QResource.find(prd.first[1].id).id %>
+        <br /><span class="description-comment"><%=raw QResource.find(prd.first[1].id).body %></span>
+      </div>
     </p>
 <% end %>
