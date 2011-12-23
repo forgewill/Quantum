@@ -12,11 +12,15 @@
               <br /><span class="description-comment"><%= res.description %></span>
               <%=raw '<div class="tree-helpers">Источник: '+res.isource+'</div>' if res.isource && !res.isource.empty? %>
           <% end %>
+          <% if res.outgoing(:is_type).first.title == 'Type_QDiscipline' %>
+              <span class="res-helpers">[id:<%= res.id %>] </span>
+              <%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %>
+              <br /><span class="description-comment"><%= res.description %></span>
+          <% end %>
       <% else %>
           <span class="res-helpers">[id:<%= res.id %>] </span>
           <%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %>
           <br /><span class="description-comment"><%= res.description %></span>
       <% end %>
-
     </p>
 <% end %>
