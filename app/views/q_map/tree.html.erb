@@ -3,6 +3,9 @@
 <% end %>
 <span class="res-helpers">[id:<%= @root.id %>] </span><%= @root.title %>
 <h1><%= @root.title %></h1>
+<div class="q-paragraph-relation-res-line margin-top-15"></div>
+<p><%= @root.description %></p>
+<div class="q-paragraph-relation-res-line margin-top-15 margin-bottom-17"></div>
 <% @hierarchy.each do |res| %>
     <p>
       <% if res.outgoing(:is_type).first != nil %>
