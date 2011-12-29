@@ -53,6 +53,7 @@
     </div>
 
     <div class="field">
+      <p><%= image_tag(@q_resource.bfile_url) if @q_resource.bfile? %></p>
       <%= f.file_field :bfile %>
       <%= f.text_field :remote_bfile_url %>
       <label>

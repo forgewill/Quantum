@@ -75,8 +75,17 @@ $(document).ready(function(){
         $(".q-paragraph-knw-level-box").css("background-color", "#fbfaff");
     });
 
-
-
+    $(".tree-map-discipline-block").mouseover(function(){
+        $(this).css("border", "1px solid #e0deef");
+        $(this).css("background-color", "#f7f5fd");
+    });
+    $(".tree-map-discipline-block").mouseout(function(){
+        $(this).css("border", "1px solid #e6e5ef");
+        $(this).css("background-color", "#fbfaff");
+    });
+    $(".tree-map-discipline-block").click(function(){
+        window.location.replace($(this).find('h3').find('a').attr("href"));
+    });
 
     $(".q-paragraph-relation-box-switcher").click(function(){
         if (relationBoxIsCollapsed == 1) {
