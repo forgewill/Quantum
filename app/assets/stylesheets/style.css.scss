@@ -248,9 +248,16 @@ header .third-Panel .tp-Content .item  a:hover { color: #671293; }
 .pr-helpers a { font-size: 10px; color: grey; }
 .pr-helpers a:hover { font-size: 10px; color: #671293; }
 
-.tree-helpers { font-size: 10px; font-weight: normal; color: grey; margin-top: -7px; }
+.tree-helpers { font-size: 10px; font-weight: normal; color: grey; }
 .tree-helpers a { font-size: 10px; color: grey; }
 .tree-helpers a:hover { font-size: 10px; color: #671293; }
+
+.q-tree-star-icon { margin-right: 2px; }
+.q-tree-level-switcher { font-size: 10px; color: grey; text-decoration: none; border-bottom: 1px dotted; cursor: pointer; }
+.tree-d-unit-block { margin-bottom: 15px; }
+.tree-d-unit-block-level { float: left; width: 45px; }
+
+
 
 .q-paragraph-unit { }
 .q-paragraph-law { margin: 0 auto; width: 750px; padding: 10px 25px 10px 25px; border: 1px solid #dddcb2; background-color: #fbfacc; font-size: 12px; font-weight: bold; }

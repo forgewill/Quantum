@@ -4,28 +4,39 @@
 <span class="res-helpers">[id:<%= @root.id %>] </span><%= @root.title %>
 <h1><%= @root.title %></h1>
 <div class="q-paragraph-relation-res-line margin-top-15"></div>
-<p><%= @root.description %></p>
+<p><strong><%= @root.description %></strong></p>
 <div class="q-paragraph-relation-res-line margin-top-15 margin-bottom-17"></div>
 <% @hierarchy.each do |res| %>
-    <p>
+    <div class="tree-d-unit-block">
       <% if res.outgoing(:is_type).first != nil %>
           <% if res.outgoing(:is_type).first.title == 'Type_QParagraph' %>
-              <span class="res-helpers">[ph:id:<%= res.id %>] </span>
+              <!--<span class="res-helpers">[ph:id:<%= res.id %>] </span>-->
               <%= link_to res.title, q_paragraph_show_path() + "?id=" + res.id %>
               <br /><span class="description-comment"><%= res.description %></span>
               <%=raw '<div class="tree-helpers">Источник: '+res.isource+'</div>' if res.isource && !res.isource.empty? %>
           <% end %>
           <% if res.outgoing(:is_type).first.title == 'Type_QDiscipline' %>
               <div class="tree-map-discipline-block">
-                  <h3><%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %></h3>
-                  <div class="description-comment"><%= res.description %></div>
+                <h3><%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %></h3>
+                <div class="description-comment"><%= res.description %></div>
               </div>
           <% end %>
       <% else %>
-          <span class="res-helpers">[id:<%= res.id %>] </span>
-          <%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %>
+          <!--<span class="res-helpers">[id:<%= res.id %>] </span>-->
+          <strong><%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %></strong>
+          <span class="tree-helpers"> | </span>
+          <span class="q-tree-level-switcher">Уровень усвоения</span>
+          <% if average_points(res.id).to_f < 3.5 %>
+              <%=  image_tag("icons/star-small-empty.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "Уровни") %>
+          <% end %>
+          <% if average_points(res.id).to_f >= 3.5 && average_points(res.id).to_f < 7 %>
+              <%=  image_tag("icons/star-small-half.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "Уровни") %>
+          <% end %>
+          <% if average_points(res.id).to_f >= 7 %>
+              <%=  image_tag("icons/star-small.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "Уровни") %>
+          <% end %>
           <br /><span class="description-comment"><%= res.description %></span>
       <% end %>
-      </p>
+    </div>
 <% end %>
 <div class="clear-both"></div>
