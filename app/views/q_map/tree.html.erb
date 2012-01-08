@@ -11,7 +11,16 @@
       <% if res.outgoing(:is_type).first != nil %>
           <% if res.outgoing(:is_type).first.title == 'Type_QParagraph' %>
               <!--<span class="res-helpers">[ph:id:<%= res.id %>] </span>-->
-              <%= link_to res.title, q_paragraph_show_path() + "?id=" + res.id %>
+              <strong><%= link_to res.title, q_paragraph_show_path() + "?id=" + res.id %></strong>
+              <% if average_points(res.id).to_f < 3.5 %>
+                  <%=  image_tag("icons/star-small-empty.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "Уровни") %>
+              <% end %>
+              <% if average_points(res.id).to_f >= 3.5 && average_points(res.id).to_f < 7 %>
+                  <%=  image_tag("icons/star-small-half.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "Уровни") %>
+              <% end %>
+              <% if average_points(res.id).to_f >= 7 %>
+                  <%=  image_tag("icons/star-small.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "Уровни") %>
+              <% end %>
               <br /><span class="description-comment"><%= res.description %></span>
               <%=raw '<div class="tree-helpers">Источник: '+res.isource+'</div>' if res.isource && !res.isource.empty? %>
           <% end %>
