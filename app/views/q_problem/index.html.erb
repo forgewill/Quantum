@@ -1,5 +1,5 @@
 <h1>Упражнения (<%= @p_ref_d_right.count %>/<%= @p_ref_d.count %>)</h1>
-<%=raw '<p class="tree-helpers">Относятся к дидактической единице, ID: ' + params[:root_id] + '</p>' %>
+<p class="tree-helpers">Относятся к <%= link_to '§ ' + QResource.find(params[:root_id]).title, "/q_paragraph/show?id="+params[:root_id] %></p>
 <% @p_ref_d.each_with_index do |prd, index| %>
     <p>
       <div class="q-problem-tick-div">
@@ -8,7 +8,7 @@
       <div>
         <span class="res-helpers"><%= index+1 %>.&nbsp;</span>
         <span class="res-helpers">[id:<%= prd.first[1].id %>] </span>
-        <%= link_to QResource.find(prd.first[1].id).title, "show?problem_id=" + QResource.find(prd.first[1].id).id %>
+        <%= link_to QResource.find(prd.first[1].id).title, "show?problem_id=" + prd.first[1].id.to_s %>
         <br /><span class="description-comment"><%=raw QResource.find(prd.first[1].id).body %></span>
       </div>
     </p>
