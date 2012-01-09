@@ -1,5 +1,5 @@
 <h1>Упражнения (<%= @p_ref_d_right.count %>/<%= @p_ref_d.count %>)</h1>
-<p class="tree-helpers">Относятся к <%= link_to '§ ' + QResource.find(params[:root_id]).title, "/q_paragraph/show?id="+params[:root_id] %></p>
+<p class="tree-helpers">Список упражнений для <%= link_to '§ ' + QResource.find(params[:root_id]).title, "/q_paragraph/show?id="+params[:root_id] %></p>
 <% @p_ref_d.each_with_index do |prd, index| %>
     <p>
       <div class="q-problem-tick-div">

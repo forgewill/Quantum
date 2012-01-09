@@ -41,6 +41,7 @@ module QMapHelper
     average = sum/total.count.to_f
     html << average.to_s
   end
+
   def sum_points(root)
     html = ""
 
