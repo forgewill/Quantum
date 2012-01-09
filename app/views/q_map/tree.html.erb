@@ -7,6 +7,7 @@
 <p><strong><%= @root.description %></strong></p>
 <div class="q-paragraph-relation-res-line margin-top-15 margin-bottom-17"></div>
 <% @hierarchy.each do |res| %>
+    <% avg = average_points(res.id) %>
     <div class="tree-d-unit-block">
       <% if res.outgoing(:is_type).first != nil %>
 
@@ -15,14 +16,14 @@
               <strong><%= link_to res.title, q_paragraph_show_path() + "?id=" + res.id %></strong>
               <span class="tree-helpers"> | </span>
               <span class="q-tree-level-switcher">Уровень усвоения</span>
-              <span class="tree-helpers"> (<%= average_points(res.id) %>)</span>
-              <% if average_points(res.id).to_f < 3.5 %>
+              <span class="tree-helpers"> (<%= avg %>)</span>
+              <% if avg.to_f < 3.5 %>
                   <%=  image_tag("icons/star-small-empty.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "Уровни") %>
               <% end %>
-              <% if average_points(res.id).to_f >= 3.5 && average_points(res.id).to_f < 7 %>
+              <% if avg.to_f >= 3.5 && average_points(res.id).to_f < 7 %>
                   <%=  image_tag("icons/star-small-half.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "Уровни") %>
               <% end %>
-              <% if average_points(res.id).to_f >= 7 %>
+              <% if avg.to_f >= 7 %>
                   <%=  image_tag("icons/star-small.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "Уровни") %>
               <% end %>
               <br /><span class="description-comment"><%= res.description %></span>
@@ -41,14 +42,14 @@
           <strong><%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %></strong>
           <span class="tree-helpers"> | </span>
           <span class="q-tree-level-switcher">Уровень усвоения</span>
-          <span class="tree-helpers"> (<%= average_points(res.id) %>)</span>
-          <% if average_points(res.id).to_f < 3.5 %>
+          <span class="tree-helpers"> (<%= avg %>)</span>
+          <% if avg.to_f < 3.5 %>
               <%=  image_tag("icons/star-small-empty.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "*") %>
           <% end %>
-          <% if average_points(res.id).to_f >= 3.5 && average_points(res.id).to_f < 7 %>
+          <% if avg.to_f >= 3.5 && average_points(res.id).to_f < 7 %>
               <%=  image_tag("icons/star-small-half.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "*") %>
           <% end %>
-          <% if average_points(res.id).to_f >= 7 %>
+          <% if avg.to_f >= 7 %>
               <%=  image_tag("icons/star-small.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "*") %>
           <% end %>
           <br /><span class="description-comment"><%= res.description %></span>
