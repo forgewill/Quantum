@@ -5,6 +5,7 @@ $(document).ready(function(){
     var menuIsCollapsed = 0;
     var relationBoxIsCollapsed = 1;
     var knwLevelBoxIsCollapsed = 1;
+    var problemRelationBoxIsCollapsed = 1;
 
     $("#index-Menu-ep").mouseover(function(){
         $(this).addClass("index-Menu-ep-state-hover");
@@ -75,6 +76,31 @@ $(document).ready(function(){
         $(".q-paragraph-knw-level-box").css("background-color", "#fbfaff");
     });
 
+
+
+    $(".q-problem-relation-box-switcher").mouseover(function(){
+            $(this).css("color", "#8d84d7");
+            $(".q-problem-relation-box").css("border", "1px solid #dad8ef");
+        });
+        $(".q-problem-relation-box-switcher").mouseout(function(){
+            $(this).css("color", "#8279c6");
+            $(".q-problem-relation-box").css("border", "1px solid #e6e5ef");
+        });
+
+        $(".q-problem-relation-box-title").mouseover(function(){
+            $(".q-problem-relation-box-switcher").css("color", "#8d84d7");
+            $(".q-problem-relation-box").css("border", "1px solid #e0deef");
+            $(".q-problem-relation-box").css("background-color", "#f7f5fd");
+        });
+        $(".q-problem-relation-box-title").mouseout(function(){
+            $(".q-problem-relation-box-switcher").css("color", "#8279c6");
+            $(".q-problem-relation-box").css("border", "1px solid #e6e5ef");
+            $(".q-problem-relation-box").css("background-color", "#fbfaff");
+        });
+
+
+
+
     $(".tree-map-discipline-block").mouseover(function(){
         $(this).css("border", "1px solid #e0deef");
         $(this).css("background-color", "#f7f5fd");
@@ -144,6 +170,35 @@ $(document).ready(function(){
            });
         }
     });
+
+
+    $(".q-problem-relation-box-switcher").click(function(){
+            if (problemRelationBoxIsCollapsed == 1) {
+                $(".q-problem-relation-box-items").slideDown(300, function(){
+                    problemRelationBoxIsCollapsed = 0;
+                    $(".q-problem-relation-box-switcher").html('Свернуть');
+                });
+            } else {
+               $(".q-problem-relation-box-items").slideUp(300, function(){
+                   problemRelationBoxIsCollapsed = 1;
+                    $(".q-problem-relation-box-switcher").html('Развернуть');
+               });
+            }
+        });
+
+        $(".q-problem-relation-box-title").click(function(){
+            if (problemRelationBoxIsCollapsed == 1) {
+                $(".q-problem-relation-box-items").slideDown(300, function(){
+                    problemRelationBoxIsCollapsed = 0;
+                    $(".q-problem-relation-box-switcher").html('Свернуть');
+                });
+            } else {
+               $(".q-problem-relation-box-items").slideUp(300, function(){
+                   problemRelationBoxIsCollapsed = 1;
+                    $(".q-problem-relation-box-switcher").html('Развернуть');
+               });
+            }
+        });
 
    /*
     $(".paragraph-unit").mouseover(function(){

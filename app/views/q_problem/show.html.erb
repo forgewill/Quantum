@@ -9,7 +9,12 @@
     <span class="q-problem-relation-box-switcher">Развернуть</span>
   </div>
   <div class="q-problem-relation-box-items">
-    dsfsdf
+    <% @related_paragraphs.each_with_index do |rel_p, index| %>
+        <p>
+          <span class="res-helpers"><%= index+1 %>.&nbsp;</span>
+          § <%= link_to QResource.find(rel_p.first[1].id).title, "/q_paragraph/show?id="+rel_p.first[1].id.to_s %>
+        </p>
+    <% end %>
   </div>
 </div>
 

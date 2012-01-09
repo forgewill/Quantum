@@ -42,7 +42,7 @@
           <strong><%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %></strong>
           <span class="tree-helpers"> | </span>
           <span class="q-tree-level-switcher">Уровень усвоения</span>
-          <span class="tree-helpers"> (<%= avg %>)</span>
+          <span class="tree-helpers"> (≈ <%= avg %>)</span>
           <% if avg.to_f < 3.5 %>
               <%=  image_tag("icons/star-small-empty.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "*") %>
           <% end %>

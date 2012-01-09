@@ -53,7 +53,11 @@ class QProblemController < ApplicationController
                                   'problem_id' => @problem.id.to_i,
                                   'tax_level_id' => 198)
 
-
+    @related_paragraphs = Neo4j.query("START n=node({problem_id}), t=node({paragraph_type_id})
+                                      MATCH (n)-[:refers_to]->(x)-[:is_type]->(t)
+                                      RETURN x",
+                                      'problem_id' => @problem.id.to_i,
+                                      'paragraph_type_id' => 78)
 
   end
 
