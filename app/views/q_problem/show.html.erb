@@ -1,9 +1,22 @@
 <h1><%=raw @problem.title %></h1>
-<p>
+
 <h4><%= image_tag("icons/medal-bronze.png", :size => "16x16", :class => "q-problem-medal-icon", :align => "left", :alt => "medal") %>Вес задачи: <%= @problem.weight %> балла. Уровень усвоения — <% @taxonomy_level.each do |tax| %><%= link_to tax.first[1], "/q_paragraph/show?id=168" %><% end %></h4>
+
+<div class="q-problem-relation-box">
+  <div class="q-problem-relation-box-title">
+    <%= image_tag("icons/blue-document-tree.png", :size => "16x16", :class => "q-problem-relation-box-switcher-icon", :align => "left", :alt => "↓") %>
+    Для успешного решения задачи необходимо знать:
+    <span class="q-problem-relation-box-switcher">Развернуть</span>
+  </div>
+  <div class="q-problem-relation-box-items">
+    dsfsdf
+  </div>
+</div>
+
 <div class="q-problem-body"><%=raw @problem.body %></div>
-<p class="pr-helpers">Источник: <%=raw @problem.isource %></p>
-</p>
+
+<div class="pr-helpers">Источник: <%=raw @problem.isource %></div>
+
 <% if @right == true %>
     <h4>История ответов</h4>
     <% @history_answers.each_with_index do |asw, index| %>

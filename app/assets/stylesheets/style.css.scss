@@ -244,7 +244,7 @@ header .third-Panel .tp-Content .item  a:hover { color: #671293; }
 .description-comment { font-size: 11px; }
 .res-helpers { font-size: 8px; font-weight: normal; color: grey; }
 
-.pr-helpers { font-size: 10px; color: grey; }
+.pr-helpers { font-size: 10px; color: grey; margin-top: 3px; }
 .pr-helpers a { font-size: 10px; color: grey; }
 .pr-helpers a:hover { font-size: 10px; color: #671293; }
 
@@ -286,6 +286,14 @@ header .third-Panel .tp-Content .item  a:hover { color: #671293; }
 .q-paragraph-relation-res-icon { float: left; margin-right: 5px; }
 
 .q-problem-medal-icon { margin-right: 5px; }
+
+.q-problem-relation-box { padding: 10px; border: 1px solid #e6e5ef; background-color: #fbfaff; margin-bottom: 2px; }
+.q-problem-relation-box-title { color: #4b0b6c; font-size: 13px; font-weight: bold; cursor: pointer; }
+.q-problem-relation-box-switcher { margin-left: 488px; color: #8279c6; font-size: 10px; font-weight: normal; text-decoration: none; border-bottom: 1px dotted; cursor: pointer; }
+.q-problem-relation-box-switcher-icon { margin-right: 7px; }
+.q-problem-relation-box-items { display: none; }
+.q-problem-relation-box-items-raw { margin-bottom: 7px; }
+.q-problem-relation-box-items-relType { margin-top: 20px; font-size: 11px; font-weight: bold; margin-bottom: 5px; }
 
 .q-problem-body { padding: 10px; border: 1px solid #edecd2; background-color: #ffffec; }
 .q-problem-notice { font-size: 11px; margin-top: -4px; }
