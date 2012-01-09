@@ -20,7 +20,7 @@
               <% if avg.to_f < 3.5 %>
                   <%=  image_tag("icons/star-small-empty.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "Уровни") %>
               <% end %>
-              <% if avg.to_f >= 3.5 && average_points(res.id).to_f < 7 %>
+              <% if avg.to_f >= 3.5 && avg.to_f < 7 %>
                   <%=  image_tag("icons/star-small-half.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "Уровни") %>
               <% end %>
               <% if avg.to_f >= 7 %>
@@ -46,7 +46,7 @@
           <% if avg.to_f < 3.5 %>
               <%=  image_tag("icons/star-small-empty.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "*") %>
           <% end %>
-          <% if avg.to_f >= 3.5 && average_points(res.id).to_f < 7 %>
+          <% if avg.to_f >= 3.5 && avg.to_f < 7 %>
               <%=  image_tag("icons/star-small-half.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "*") %>
           <% end %>
           <% if avg.to_f >= 7 %>
