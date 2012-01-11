@@ -53,7 +53,7 @@
     <%= image_tag("icons/cards-stack.png", :size => "16x16", :class => "q-paragraph-relation-box-switcher-icon", :align => "left", :alt => "↓") %>
   </div>
   <div class="q-paragraph-relation-res-item">
-    <span class="tree-helpers">1. </span><%= link_to "Упражнения", q_problem_index_path() + "?root_id=" + params[:id] %>
+    <span class="tree-helpers">1. </span><%= link_to "Задачи для решения", q_problem_index_path() + "?root_id=" + params[:id] %>
     (<%= @problems_all_right.count %>/<%= @problems_all.count %>)
   </div>
   <div class="q-paragraph-relation-res-item">

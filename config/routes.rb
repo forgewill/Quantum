@@ -1,6 +1,8 @@
 Quantum::Application.routes.draw do
   get "q_problem/index"
 
+  get "q_problem/new"
+
   get "q_problem/show"
 
   get "q_problem/solution"

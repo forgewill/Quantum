@@ -1,0 +1,18 @@
+<%= form_tag('/create') do %>
+    <h3>Текст задачи</h3>
+    <%= text_area_tag :problem_body, nil, :size => "75x7" %>
+
+    <h3>Источник</h3>
+    <%= text_field_tag :problem_body, nil, :size => "75" %>
+
+    <h3>Вес (сложность)</h3>
+    <%= number_field_tag :problem_body %>
+
+    <h3>Ответы на задачу</h3>
+    <p>Правильный ответ<br /><%= text_field_tag :problem_body, nil, :size => "45" %></p>
+    <p>НЕправильный ответ<br /><%= text_field_tag :problem_body, nil, :size => "45" %></p>
+    <p>НЕправильный ответ<br /><%= text_field_tag :problem_body, nil, :size => "45" %></p>
+    <p>НЕправильный ответ<br /><%= text_field_tag :problem_body, nil, :size => "45" %></p>
+    
+    <p><%= submit_tag "Добавить задачу" %></p>
+<% end %>
