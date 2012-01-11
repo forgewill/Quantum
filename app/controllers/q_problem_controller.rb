@@ -17,6 +17,12 @@ class QProblemController < ApplicationController
                                  'qproblem_type_id' => 123)
   end
 
+  def create
+    Neo4j::Transaction.run do
+      # neo4j operations goes here
+    end
+  end
+
   def show
     @problem = QResource.find(params[:problem_id]) if (params[:problem_id] != nil)
     @answers = @problem.outgoing(:has_answer).depth(1)

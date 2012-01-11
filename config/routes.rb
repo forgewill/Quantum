@@ -3,6 +3,8 @@ Quantum::Application.routes.draw do
 
   get "q_problem/new"
 
+  post "q_problem/create"
+
   get "q_problem/show"
 
   get "q_problem/solution"
