@@ -19,8 +19,56 @@ class QProblemController < ApplicationController
 
   def create
     Neo4j::Transaction.run do
-      # neo4j operations goes here
+      #Get typed nodes
+      answer_r_node = QResource.find(126) # TODO Need to relate to "TYPE" instead "ID"
+      answer_w_node = QResource.find(127) # TODO Need to relate to "TYPE" instead "ID"
+      problem_type_node = QResource.find(123) # TODO Need to relate to "TYPE" instead "ID"
+      taxonomy_level_node = QResource.find(params[:taxonomy_level]) # TODO Need to relate to "TYPE" instead "ID"
+
+      #Get related paragraph
+      related_paragraph = QResource.find(params[:related_paragraph])
+
+      #Create problem node
+      @problem_node = QResource.new
+      @problem_node.title = params[:problem_body].slice(0..45)+"..."
+      @problem_node.body = params[:problem_body]
+      @problem_node.isource = params[:problem_isource]
+      @problem_node.weight = params[:problem_weight]
+
+      #Create answer nodes
+      r_answer = QResource.new
+      r_answer.body = params[:problem_r_answer]
+
+      w_answer_first = QResource.new
+      w_answer_first.body = params[:problem_w_answer_first]
+
+      w_answer_second = QResource.new
+      w_answer_second.body = params[:problem_w_answer_second]
+
+      w_answer_third = QResource.new
+      w_answer_third.body = params[:problem_w_answer_third]
+
+      #Saving nodes
+      @problem_node.save!
+      r_answer.save!
+      w_answer_first.save!
+      w_answer_second.save!
+      w_answer_third.save!
+
+      #Create relationships
+      Neo4j::Relationship.new(:is_type, @problem_node, problem_type_node)
+      Neo4j::Relationship.new(:refers_to, @problem_node, related_paragraph)
+      Neo4j::Relationship.new(:refers_to, @problem_node, taxonomy_level_node)
+      Neo4j::Relationship.new(:has_answer, @problem_node, r_answer)
+      Neo4j::Relationship.new(:has_answer, @problem_node, w_answer_first)
+      Neo4j::Relationship.new(:has_answer, @problem_node, w_answer_second)
+      Neo4j::Relationship.new(:has_answer, @problem_node, w_answer_third)
+      Neo4j::Relationship.new(:is_type, r_answer, answer_r_node)
+      Neo4j::Relationship.new(:is_type, w_answer_first, answer_w_node)
+      Neo4j::Relationship.new(:is_type, w_answer_second, answer_w_node)
+      Neo4j::Relationship.new(:is_type, w_answer_third, answer_w_node)
     end
+    redirect_to :action => "show", :problem_id => @problem_node.neo_id
   end
 
   def show

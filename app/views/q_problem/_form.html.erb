@@ -1,18 +1,30 @@
-<%= form_tag('/create') do %>
+<%= form_tag('create') do %>
+    <h3>Относится к параграфу (ID)</h3>
+    <%= text_field_tag :related_paragraph, nil, :size => "5" %>
+
     <h3>Текст задачи</h3>
     <%= text_area_tag :problem_body, nil, :size => "75x7" %>
 
     <h3>Источник</h3>
-    <%= text_field_tag :problem_body, nil, :size => "75" %>
+    <%= text_field_tag :problem_isource, nil, :size => "75" %>
 
     <h3>Вес (сложность)</h3>
-    <%= number_field_tag :problem_body %>
+    <%= number_field_tag :problem_weight %>
+
+    <h3>Уровень усвоения</h3>
+    <%= select_tag('taxonomy_level', options_for_select([['1. Знание', 199],
+                                                         ['2. Понимание', 200],
+                                                         ['3. Применение', 201],
+                                                         ['4. Анализ', 202],
+                                                         ['5. Синтез', 203],
+                                                         ['6. Оценка', 204]],
+                                                        1), :class => "input-field") %>
 
     <h3>Ответы на задачу</h3>
-    <p>Правильный ответ<br /><%= text_field_tag :problem_body, nil, :size => "45" %></p>
-    <p>НЕправильный ответ<br /><%= text_field_tag :problem_body, nil, :size => "45" %></p>
-    <p>НЕправильный ответ<br /><%= text_field_tag :problem_body, nil, :size => "45" %></p>
-    <p>НЕправильный ответ<br /><%= text_field_tag :problem_body, nil, :size => "45" %></p>
-    
+    <p>Правильный ответ<br /><%= text_field_tag :problem_r_answer, nil, :size => "45" %></p>
+    <p>НЕправильный ответ<br /><%= text_field_tag :problem_w_answer_first, nil, :size => "45" %></p>
+    <p>НЕправильный ответ<br /><%= text_field_tag :problem_w_answer_second, nil, :size => "45" %></p>
+    <p>НЕправильный ответ<br /><%= text_field_tag :problem_w_answer_third, nil, :size => "45" %></p>
+
     <p><%= submit_tag "Добавить задачу" %></p>
 <% end %>
