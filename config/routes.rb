@@ -1,4 +1,22 @@
 Quantum::Application.routes.draw do
+  get "q_test/index"
+
+  get "q_test/show"
+
+  get "q_test/new"
+
+  get "q_test/edit"
+
+  get "q_test/create"
+
+  get "q_test/update"
+
+  get "q_test/delete"
+
+  get "q_test/destroy"
+
+  get "q_test/report"
+
   get "q_problem/index"
 
   get "q_problem/new"

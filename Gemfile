@@ -22,15 +22,18 @@ end
 
 gem 'jquery-rails'
 
+gem 'will_paginate', '~> 3.0'
+
 #Graph Database
-gem 'neo4j', :git => 'git://github.com/andreasronge/neo4j.git'
+gem 'neo4j', '2.0.0'
 
 #Authentication
-gem 'devise-neo4j', :git => 'git://github.com/andreasronge/devise-neo4j.git'
+#gem 'devise-neo4j',  :git => 'git://github.com/andreasronge/devise-neo4j.git'
+gem 'devise-neo4j', :git => 'git://github.com/forgewill/devise-neo4j.git'
 #gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
 
 #CarrierWave for Neo4j
-gem "carrierwave-neo4j", :require => "carrierwave/neo4j"
+gem "carrierwave-neo4j", :require => "carrierwave/neo4j", :git => 'git://github.com/forgewill/carrierwave-neo4j.git'
 
 #MathJax
 gem 'mathjax-rails', :git => 'git://github.com/pmq20/mathjax-rails.git'
