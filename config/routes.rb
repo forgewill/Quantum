@@ -1,4 +1,6 @@
 Quantum::Application.routes.draw do
+  post "q_test/solve"
+
   get "q_test/index"
 
   get "q_test/show"

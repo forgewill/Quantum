@@ -240,6 +240,7 @@ header .third-Panel .tp-Content .item  a:hover { color: #671293; }
 #main { margin: 12px auto 0 auto; width: 940px; }
 
 .dotted-link { border-bottom: 1px dotted;}
+.dotted-link-color { color: #4b0b6c; border-bottom: 1px dotted; }
 
 .description-comment { font-size: 11px; }
 .res-helpers { font-size: 8px; font-weight: normal; color: grey; }
@@ -302,7 +303,10 @@ header .third-Panel .tp-Content .item  a:hover { color: #671293; }
 
 .tree-map-discipline-block { float: left; margin: 7px; width: 275px; height: 145px; padding: 10px; border: 1px solid #e6e5ef; background-color: #fbfaff; text-align: center; cursor: pointer; }
 
+.qtest-question-block { float: left; margin: 7px; min-width: 20px; height: 17px; padding: 3px 4px 2px 4px; border: 1px solid #e6e5ef; background-color: #fbfaff; text-align: center; cursor: pointer; font-size: 12px; }
+
 .clear-both { clear: both; }
+.display-none { display: none; }
 
 .input-field { margin: 0 0 0 0; padding: 3px 3px 3px 0; font-size: 13px; border: 1px solid #a1a1a1; }
 
