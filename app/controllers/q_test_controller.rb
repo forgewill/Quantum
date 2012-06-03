@@ -32,7 +32,8 @@ class QTestController < ApplicationController
       @qtest["root"] = QResource.find(params[:qtest_id])
       @qtest["session_id"] ||= SecureRandom.hex #Generate Random Session ID
 
-      @qtest["problems_list"] = Neo4j.query{ test = node(21); test > ':consists_of' > node(:ph) > ':hold_on' > node(:pr); :pr }.to_a
+      id = params[:qtest_id].to_i
+      @qtest["problems_list"] = Neo4j.query{ test = node(id); test > ':consists_of' > node(:ph) > ':hold_on' > node(:pr); :pr }.to_a
     end
   end
 
