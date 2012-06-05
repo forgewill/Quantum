@@ -11,13 +11,25 @@ class QRelationController < ApplicationController
   end
 
   def find
-    Neo4j::Transaction.run do
-      subject = QResource.find(params[:idSubject]) if !params[:idSubject].empty?
-      object = QResource.find(params[:idObject]) if !params[:idObject].empty?
+    if params[:nodeType] == "resource"
+      Neo4j::Transaction.run do
+        subject = QResource.find(params[:idSubject]) if !params[:idSubject].empty?
+        object = QResource.find(params[:idObject]) if !params[:idObject].empty?
 
-      @relations = subject.rels() if !subject.nil? && object.nil?
-      @relations = object.rels() if !object.nil? && subject.nil?
-      @relations = subject.rels.to_other(object) if !object.nil? && !subject.nil?
+        @relations = subject.rels() if !subject.nil? && object.nil?
+        @relations = object.rels() if !object.nil? && subject.nil?
+        @relations = subject.rels.to_other(object) if !object.nil? && !subject.nil?
+      end
+    end
+    if params[:nodeType] == "user"
+      Neo4j::Transaction.run do
+        subject = User.find(params[:idSubject]) if !params[:idSubject].empty?
+        object = User.find(params[:idObject]) if !params[:idObject].empty?
+
+        @relations = subject.rels() if !subject.nil? && object.nil?
+        @relations = object.rels() if !object.nil? && subject.nil?
+        @relations = subject.rels.to_other(object) if !object.nil? && !subject.nil?
+      end
     end
   end
 

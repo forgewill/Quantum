@@ -1,6 +1,8 @@
 <h1>Поиск связи между ресурсами</h1>
 <%= form_tag('find') do -%>
-
+    <p>
+      <%= select_tag('nodeType', options_for_select([%w(Ресурс resource), %w(Пользователь user)], 1), :class => "input-field") %>
+    </p>
     <p>
       <%= label_tag 'ID субъекта' %><br />
       <%= text_field_tag 'idSubject', nil, :class => "input-field" %>
