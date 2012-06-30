@@ -1,6 +1,6 @@
 class QTestController < ApplicationController
   def index
-    @qt = Hash.new
+    @qt = {}
     @qt["root"] = QResource.find(params[:qtest_id])
   end
 
@@ -28,12 +28,12 @@ class QTestController < ApplicationController
 
   def show
     if params[:qtest_id] != nil
-      @qtest = Hash.new
+      @qtest = {}
       @qtest["root"] = QResource.find(params[:qtest_id])
       @qtest["session_id"] ||= SecureRandom.hex #Generate Random Session ID
 
       id = params[:qtest_id].to_i
-      @qtest["problems_list"] = Neo4j.query{ test = node(id); test > ':consists_of' > node(:ph) > ':hold_on' > node(:pr); :pr }.to_a
+      @qtest["problems_list"] = Neo4j.query{ test = node(id); pr = node; ph = node; test > ':consists_of' > ph > ':hold_on' > pr; ret(pr).asc(ph[:position]) }.to_a
     end
   end
 
@@ -56,6 +56,8 @@ class QTestController < ApplicationController
   end
 
   def report
+    #TODO Formula
+    @report = "Report!"
   end
 
 end
