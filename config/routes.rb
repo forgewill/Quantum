@@ -55,6 +55,8 @@ Quantum::Application.routes.draw do
 
   get "q_relation/new"
 
+  get "q_relation/newprop"
+
   get "q_relation/show"
 
   get "q_relation/delete"
@@ -62,6 +64,8 @@ Quantum::Application.routes.draw do
   post "q_relation/destroy"
 
   post "q_relation/create"
+
+  post "q_relation/createprop"
 
   resources :q_resources
 

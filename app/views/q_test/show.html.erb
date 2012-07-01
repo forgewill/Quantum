@@ -1,3 +1,8 @@
+<script type="text/javascript">
+    window.onbeforeunload = function() {
+        return "Несохраненные данные будут потеряны! Вы действительно хотите закрыть/обновить страницу?";
+    }
+</script>
 <h1><%= @qtest["root"].title %></h1>
 
 <div class="q-paragraph-relation-res-line margin-top-15"></div>

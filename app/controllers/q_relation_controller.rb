@@ -10,6 +10,9 @@ class QRelationController < ApplicationController
   def new
   end
 
+  def newprop
+  end
+
   def find
     if params[:nodeType] == "resource"
       Neo4j::Transaction.run do
@@ -44,6 +47,15 @@ class QRelationController < ApplicationController
     end
     redirect_to :action => "show", :rel_id => @rel_new.id
   end
+
+  def createprop
+      Neo4j::Transaction.run do
+        rel_id = params[:idRelation]
+        @relation = Neo4j::Relationship.load(rel_id)
+        @relation[params[:propType]] = params[:propValue]
+      end
+      redirect_to :action => "show", :rel_id => @relation.id
+    end
 
   def show
     @relation = Neo4j::Relationship.load(params[:rel_id])
