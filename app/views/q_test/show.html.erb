@@ -24,7 +24,7 @@
         <div id="problem-<%= unit.first[1].id %>" class="display-none">
           <h4><%=raw (index+1).to_s + '. ' + unit.first[1][:title] %></h4>
           <div class="q-problem-body"><%=raw unit.first[1][:body] %></div>
-          <% QResource.find(unit.first[1].id).outgoing(:contains).depth(1).each_with_index do |asw, r_index| %>
+          <% QResource.find(unit.first[1].id).outgoing(:contains).depth(1).to_a.shuffle.each_with_index do |asw, r_index| %>
               <p>
                 <span class="res-helpers"><%= r_index+1 %>.&nbsp;</span>
                 <%= radio_button_tag 'answer_'+(index+1).to_s, asw.id, false %>
