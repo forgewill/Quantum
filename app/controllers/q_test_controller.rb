@@ -71,6 +71,7 @@ class QTestController < ApplicationController
 
     phlist = Neo4j.query{ test = node(test_id); tph = node(tphid); ph = node; test > ':consists_of' > ph > ':is_type' > tph; ret(ph).asc(ph[:position]) }.to_a
     phs = Array.new(phlist.count, {}) #phs[1][:id] = 25
+    rsm = Array.new(phlist.count, {})
 
     phlist.each_with_index do |ph, i|
       #fill the ID and Weight of each _phs
@@ -83,9 +84,16 @@ class QTestController < ApplicationController
       phs[i][:solve] = (tf[0].first[1].id.to_s == trasw.to_s && 1) || 0
       #@report = @report.to_s + tf[0].first[1].id.to_s + "|"
       #@report = @report.to_s + phs[i][:solve].to_s + "|"
+
+      #calculate Result matrix
+      rsm[i] = {}
+      rsm[i][:id] = phs[i][:id]
+      rsm[i][:t] = (phs[i][:solve].to_s == "1" && phs[i][:weight]) || 0
+
+      #@report = @report.to_s + rsm[i][:t].to_s + "|"
     end
 
-    @report = phs[0][:id].to_s + "|" + phs[0][:weight].to_s + "|" + phs[0][:solve].to_s
+    #@report = phs[0][:id].to_s + "|" + phs[0][:weight].to_s + "|" + phs[0][:solve].to_s
   end
 
 end
