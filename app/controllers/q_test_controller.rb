@@ -10,7 +10,7 @@ class QTestController < ApplicationController
 
     Neo4j::Transaction.run do
       testid = QResource.find(params[:test_id])
-      @ssid = QResource.new(:ssid => params[:session_id])
+      @ssid = QResource.new(:title => params[:session_id])
       @ssid.save!
       user = User.find(current_user.id)
       Neo4j::Relationship.new(:refers_to, @ssid, user)
@@ -60,25 +60,32 @@ class QTestController < ApplicationController
     #TODO Formula
     #0d1d82e43970ffc4105fabc53ba2c379
     #9cfb13f2950ebafa3c4a0c8e95b4c830
+    #f2bf330901b0f94a19dd0c6ebee1688a -> R
+    #prlist = Neo4j.query{ test = node(test_id); pr = node; ph = node; test > ':consists_of' > ph > ':hold_on' > pr; ret(pr, ph).asc(ph[:position]) }.to_a
 
     test_id = params[:qtest_id].to_i
     ssid = params[:ssid]
+    ssid_q = Neo4j.query { lookup(QResource, "title", ssid) }.to_a
     tphid = 12
+    trasw = 16
 
     phlist = Neo4j.query{ test = node(test_id); tph = node(tphid); ph = node; test > ':consists_of' > ph > ':is_type' > tph; ret(ph).asc(ph[:position]) }.to_a
     phs = Array.new(phlist.count, {}) #phs[1][:id] = 25
 
-    prlist = Neo4j.query{ test = node(test_id); pr = node; ph = node; test > ':consists_of' > ph > ':hold_on' > pr; ret(pr, ph).asc(ph[:position]) }.to_a
-
-
     phlist.each_with_index do |ph, i|
+      #fill the ID and Weight of each _phs
       phs[i] = {}
       phs[i][:id] = ph.first[1].id
-      #@report = @report.to_s + i.to_s + ph.first[1].id.to_s
+      phs[i][:weight] = ph.first[1][:weight]
+
+      #check the truth/falsity
+      tf = Neo4j.query{ ph = node(phs[i][:id]); ssid_obj = node(ssid_q[0].first[1].id);  pr = node; asw = node; type_asw = node; ph > ':hold_on' > pr > ':contains' > asw > 'is_type' > type_asw; ssid_obj > ':selected' > asw; ret(type_asw)}.to_a
+      phs[i][:solve] = (tf[0].first[1].id.to_s == trasw.to_s && 1) || 0
+      #@report = @report.to_s + tf[0].first[1].id.to_s + "|"
+      #@report = @report.to_s + phs[i][:solve].to_s + "|"
     end
-    phs[0][:weight] = 10
-    phs[1][:weight] = 15
-    @report = phs[1][:id].to_s + "|" + phs[0][:weight].to_s + "|" + phs[1][:weight].to_s
+
+    @report = phs[0][:id].to_s + "|" + phs[0][:weight].to_s + "|" + phs[0][:solve].to_s
   end
 
 end
