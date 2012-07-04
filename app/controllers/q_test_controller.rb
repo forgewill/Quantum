@@ -2,21 +2,26 @@ class QTestController < ApplicationController
   def index
     @qt = {}
     @qt["root"] = QResource.find(params[:qtest_id])
+
+    #ssids = Neo4j.query { test = node(params[:qtest_id]); ssid = node;  }
   end
 
   def solve
     index = 0
     testid = ""
 
+
     Neo4j::Transaction.run do
       testid = QResource.find(params[:test_id])
-      @ssid = QResource.new(:title => params[:session_id])
+      @ssid = QResource.new(:title => params[:session_id], :description => "QTest SSID Object")
       @ssid.save!
       user = User.find(current_user.id)
+
       Neo4j::Relationship.new(:refers_to, @ssid, user)
       Neo4j::Relationship.new(:refers_to, @ssid, testid)
     end
 
+    #TODO Parse if no answer selected
     params[:count_of_quests].to_i.times do
       index += 1
       Neo4j::Transaction.run do
@@ -166,6 +171,7 @@ class QTestController < ApplicationController
       end
     end
 
+    #Output result
     @report = {}
 
     phs.each do |punit|
@@ -176,7 +182,6 @@ class QTestController < ApplicationController
       @report[:t] = @report[:t].to_f + runit[:t].to_f
       @report[:f] = @report[:f].to_f + runit[:f].to_f
     end
-    #@report = phs[0][:id].to_s + "|" + phs[0][:weight].to_s + "|" + phs[0][:solve].to_s
   end
 
 end
