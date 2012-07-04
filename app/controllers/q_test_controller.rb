@@ -121,10 +121,9 @@ class QTestController < ApplicationController
             sr_ratio = sr_ratio.to_f + r.to_f*l.to_f
             rl_ratio = rl_ratio.to_f + l.to_f
           end
-
           appliance_ratio = sr_ratio + (1 - rl_ratio)
+
           rsm[i][:f] = phs[i][:weight]*appliance_ratio
-          @report = rsm[i][:f]
         end
 
         if appliance_nodes.count == 0 && trust_nodes.count > 0
@@ -132,10 +131,29 @@ class QTestController < ApplicationController
         end
 
         if appliance_nodes.count > 0 && trust_nodes.count > 0
+          appliance_ratio = 0
+          sr_ratio = 0
+          rl_ratio = 0
+
+          trust_ratio = 0
+          dt_ratio = 0
+
           appliance_nodes.each do |anode|
             r = phs.select { |p| p[:id] == anode.id.to_s }[0][:solve]
-            l = QResource.find(ph[:id]).rels(:outgoing, :need_to_solve).to_other(QResource.find(anode.id))
+            l = QResource.find(ph[:id]).rels(:outgoing, :need_to_solve).to_other(QResource.find(anode.id)).first[:weight]
+            sr_ratio = sr_ratio.to_f + r.to_f*l.to_f
+            rl_ratio = rl_ratio.to_f + l.to_f
           end
+          appliance_ratio = sr_ratio + (1 - rl_ratio)
+
+          trust_nodes.each do |tnode|
+            r = phs.select { |p| p[:id] == tnode.id.to_s }[0][:solve]
+            l = QResource.find(tnode.id).rels(:outgoing, :need_to_solve).to_other(QResource.find(ph[:id])).first[:weight]
+            dt_ratio = dt_ratio.to_f + ((l.to_f*(1-r.to_f))/trust_nodes.count.to_i)
+          end
+          trust_ratio = 1 - dt_ratio
+          @report = ph[:id].to_s + " TR=" + trust_ratio.to_s
+          rsm[i][:f] = phs[i][:weight]*appliance_ratio*trust_ratio
         end
       else
         rsm[i][:f] = 0
