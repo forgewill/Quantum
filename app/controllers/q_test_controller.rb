@@ -85,13 +85,63 @@ class QTestController < ApplicationController
       #@report = @report.to_s + tf[0].first[1].id.to_s + "|"
       #@report = @report.to_s + phs[i][:solve].to_s + "|"
 
-      #calculate Result matrix
+      #calculate Result matrix with T's
       rsm[i] = {}
       rsm[i][:id] = phs[i][:id]
       rsm[i][:t] = (phs[i][:solve].to_s == "1" && phs[i][:weight]) || 0
 
       #@report = @report.to_s + rsm[i][:t].to_s + "|"
     end
+
+    phs.each_with_index do |ph, i|
+      if ph[:solve].to_s == "1"
+        ph_node = QResource.find(ph[:id])
+        appliance_nodes = ph_node.outgoing(:need_to_solve)
+        trust_nodes = ph_node.incoming(:need_to_solve)
+
+        #appliance_nodes.each do |t|
+        #  @report = @report.to_s + t.id.to_s
+        #end
+        #phs.select { |ph| ph[:id] == 22 }
+        #prow = phs.select { |p| p[:id] == "22" }
+        #@report = @report.to_s + ph[:id].to_s + "out-" + appliance_nodes.count.to_s + "in-" + trust_nodes.count.to_s + "|"
+
+        if appliance_nodes.count == 0 && trust_nodes.count == 0
+          rsm[i][:f] = phs[i][:weight]
+        end
+
+        if appliance_nodes.count > 0 && trust_nodes.count == 0
+          appliance_ratio = 0
+          sr_ratio = 0
+          rl_ratio = 0
+
+          appliance_nodes.each do |anode|
+            r = phs.select { |p| p[:id] == anode.id.to_s }[0][:solve]
+            l = QResource.find(ph[:id]).rels(:outgoing, :need_to_solve).to_other(QResource.find(anode.id)).first[:weight]
+            sr_ratio = sr_ratio.to_f + r.to_f*l.to_f
+            rl_ratio = rl_ratio.to_f + l.to_f
+          end
+
+          appliance_ratio = sr_ratio + (1 - rl_ratio)
+          rsm[i][:f] = phs[i][:weight]*appliance_ratio
+          @report = rsm[i][:f]
+        end
+
+        if appliance_nodes.count == 0 && trust_nodes.count > 0
+
+        end
+
+        if appliance_nodes.count > 0 && trust_nodes.count > 0
+          appliance_nodes.each do |anode|
+            r = phs.select { |p| p[:id] == anode.id.to_s }[0][:solve]
+            l = QResource.find(ph[:id]).rels(:outgoing, :need_to_solve).to_other(QResource.find(anode.id))
+          end
+        end
+      else
+        rsm[i][:f] = 0
+      end
+    end
+
 
     #@report = phs[0][:id].to_s + "|" + phs[0][:weight].to_s + "|" + phs[0][:solve].to_s
   end
