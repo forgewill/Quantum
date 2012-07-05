@@ -89,7 +89,7 @@ class QTestController < ApplicationController
       #check the truth/falsity
       tf = Neo4j.query{ ph = node(phs[i][:id]); ssid_obj = node(ssid_q[0].first[1].id);  pr = node; asw = node; type_asw = node; ph > ':hold_on' > pr > ':contains' > asw > 'is_type' > type_asw; ssid_obj > ':selected' > asw; ret(type_asw)}.to_a
       if tf[0].nil?
-        phs[i][:solve] = 0
+        phs[i][:solve] = 3
       else
         phs[i][:solve] = (tf[0].first[1].id.to_s == trasw.to_s && 1) || 0
       end
@@ -182,12 +182,21 @@ class QTestController < ApplicationController
 
     phs.each do |punit|
       @report[:max] = @report[:max].to_f + punit[:weight].to_f
+      @report[:r_count] = @report[:r_count].to_i + 1 if punit[:solve] == 1
+      @report[:na_count] = @report[:na_count].to_i + 1 if punit[:solve] == 3
     end
 
     rsm.each do |runit|
       @report[:t] = @report[:t].to_f + runit[:t].to_f
       @report[:f] = @report[:f].to_f + runit[:f].to_f
     end
+
+    @report[:all_count] = phs.count
+    @report[:w_count] = @report[:all_count] - (@report[:na_count] + @report[:r_count])
+
+    @report[:r_perc] = (100*@report[:r_count])/@report[:all_count]
+    @report[:na_perc] = (100*@report[:na_count])/@report[:all_count]
+    @report[:w_perc] = (100*@report[:w_count])/@report[:all_count]
   end
 
 end

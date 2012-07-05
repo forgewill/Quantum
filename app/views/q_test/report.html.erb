@@ -1,5 +1,13 @@
 <h1>Результаты диагностики</h1>
-<p>MAX = <%= @report[:max] %></p>
+<p>Max = <%= @report[:max] %></p>
 <p>T = <%= @report[:t] %></p>
 <p>F = <%= @report[:f] %></p>
-<div id="chart_div"></div>
+
+<p>All Count = <%= @report[:all_count] %></p>
+<p>R Count = <%= @report[:r_count] %></p>
+<p>W Count = <%= @report[:w_count] %></p>
+<p>N/A Count = <%= @report[:na_count] %></p>
+
+<p>R Perc = <%= @report[:r_perc] %>%</p>
+<p>N/A Perc = <%= @report[:na_perc] %>%</p>
+<p>W Perc = <%= @report[:w_perc] %>%</p>
