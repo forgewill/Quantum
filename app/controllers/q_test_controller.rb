@@ -17,6 +17,7 @@ class QTestController < ApplicationController
       @ssid.save!
       user = User.find(current_user.id)
 
+      #TODO rel to type of SSID
       Neo4j::Relationship.new(:refers_to, @ssid, user)
       Neo4j::Relationship.new(:refers_to, @ssid, testid)
     end

@@ -22,6 +22,8 @@ end
 
 gem 'jquery-rails'
 
+gem 'd3_rails'
+
 gem 'will_paginate', '~> 3.0'
 
 #Graph Database
