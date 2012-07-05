@@ -16,10 +16,11 @@ class QTestController < ApplicationController
       @ssid = QResource.new(:title => params[:session_id], :description => "QTest SSID Object")
       @ssid.save!
       user = User.find(current_user.id)
+      ssid_type = QResource.find(4) #TODO Define global vars
 
-      #TODO rel to type of SSID
       Neo4j::Relationship.new(:refers_to, @ssid, user)
       Neo4j::Relationship.new(:refers_to, @ssid, testid)
+      Neo4j::Relationship.new(:type_is, @ssid, ssid_type)
     end
 
     #TODO Parse if no answer selected
@@ -87,7 +88,11 @@ class QTestController < ApplicationController
 
       #check the truth/falsity
       tf = Neo4j.query{ ph = node(phs[i][:id]); ssid_obj = node(ssid_q[0].first[1].id);  pr = node; asw = node; type_asw = node; ph > ':hold_on' > pr > ':contains' > asw > 'is_type' > type_asw; ssid_obj > ':selected' > asw; ret(type_asw)}.to_a
-      phs[i][:solve] = (tf[0].first[1].id.to_s == trasw.to_s && 1) || 0
+      if tf[0].nil?
+        phs[i][:solve] = 0
+      else
+        phs[i][:solve] = (tf[0].first[1].id.to_s == trasw.to_s && 1) || 0
+      end
       #@report = @report.to_s + tf[0].first[1].id.to_s + "|"
       #@report = @report.to_s + phs[i][:solve].to_s + "|"
 
