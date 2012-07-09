@@ -191,12 +191,17 @@ class QTestController < ApplicationController
       @report[:f] = @report[:f].to_f + runit[:f].to_f
     end
 
+    @report[:na_count] = 0 if @report[:na_count].nil?
+    @report[:r_count] = 0 if @report[:r_count].nil?
+
     @report[:all_count] = phs.count
     @report[:w_count] = @report[:all_count] - (@report[:na_count] + @report[:r_count])
 
     @report[:r_perc] = (100*@report[:r_count])/@report[:all_count]
     @report[:na_perc] = (100*@report[:na_count])/@report[:all_count]
     @report[:w_perc] = (100*@report[:w_count])/@report[:all_count]
+
+    @report[:ft_div] = @report[:f].to_f/@report[:t].to_f
   end
 
 end

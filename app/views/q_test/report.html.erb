@@ -1,13 +1,66 @@
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+
+    google.setOnLoadCallback(drawChartOverall, drawChartCountUnit);
+    google.setOnLoadCallback(drawChartCountUnit);
+
+    function drawChartOverall() {
+        var data = google.visualization.arrayToDataTable([
+            ['Cat', 'Max', 'T', 'F'],
+            ['Баллы', <%= @report[:max] %>, <%= @report[:t] %>, <%= @report[:f] %>]
+        ]);
+
+        var options = {
+            fontName: 'Tahoma',
+            vAxis: {title: 'Количество баллов', titleTextStyle: {color: 'gray'}, gridlines: {count: 6}}
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div_overall'));
+        chart.draw(data, options);
+    }
+    function drawChartCountUnit() {
+        var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['Верно',     <%= @report[:r_count] %>],
+            ['Неверно',     <%= @report[:w_count] %>],
+            ['Не дано ответа',  <%= @report[:na_count] %>]
+        ]);
+
+        var options = {
+            fontName: 'Tahoma'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div_count_unit'));
+        chart.draw(data, options);
+    }
+</script>
 <h1>Результаты диагностики</h1>
-<p>Max = <%= @report[:max] %></p>
-<p>T = <%= @report[:t] %></p>
-<p>F = <%= @report[:f] %></p>
-
-<p>All Count = <%= @report[:all_count] %></p>
-<p>R Count = <%= @report[:r_count] %></p>
-<p>W Count = <%= @report[:w_count] %></p>
-<p>N/A Count = <%= @report[:na_count] %></p>
-
-<p>R Perc = <%= @report[:r_perc] %>%</p>
-<p>N/A Perc = <%= @report[:na_perc] %>%</p>
-<p>W Perc = <%= @report[:w_perc] %>%</p>
+<div class="q-test-line"></div>
+<div class="q-test-result-box">
+  <div id="chart_div_overall" class="q-test-result-chart"></div>
+  <div class="q-test-result-chart-description">
+    <h4>Диагностика уровня усвоения учебного материала</h4>
+    <p>
+      <strong>Max:</strong> максимально возможное количество баллов, которое можно набрать при выполнении настоящего теста.
+    </p>
+    <p>
+      <strong>T:</strong> количество баллов, равное сумме баллов верно решенных контрольных заданий.
+    </p>
+    <p>
+      <strong>F:</strong> количество баллов, равное сумме баллов верно решенных контрольных заданий, рассчитанных с учетом смысловых взаимосвязей между контрольными заданиями.
+    </p>
+    <p>
+      <strong>F/T:</strong> <%= @report[:ft_div] %>
+    </p>
+  </div>
+</div>
+<div class="q-test-line"></div>
+<div class="q-test-result-box">
+  <div id="chart_div_count_unit" class="q-test-result-chart"></div>
+  <div class="q-test-result-chart-description">
+    <h4>Диагностика уровня усвоения учебного материала</h4>
+    Процентное соотношение <strong>верно</strong> и <strong>неверно</strong> решенных заданий, а также заданий, на которые <strong>не были даны ответы</strong>.
+  </div>
+</div>
+<div class="q-test-line"></div>
