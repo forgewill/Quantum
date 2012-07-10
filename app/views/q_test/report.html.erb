@@ -13,7 +13,7 @@
 
         var options = {
             fontName: 'Tahoma',
-            vAxis: {title: 'Количество баллов', titleTextStyle: {color: 'gray'}, gridlines: {count: 6}}
+            vAxis: {title: 'Количество баллов', titleTextStyle: {color: 'gray'}, gridlines: {count: 6}, minorGridlines: {count: 1, color: '#F1F1F1'}, minValue: 0}
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById('chart_div_overall'));
@@ -36,11 +36,19 @@
     }
 </script>
 <h1>Результаты диагностики</h1>
+<div class="q-test-result-stat">
+  <div class="q-test-result-stat-u">
+    <%= image_tag("icons/chart.png", :class => "q-test-icon", :size => "16x16", :alt => "Профиль", :align => "left")%>
+    <strong>T:</strong> <%= @report[:t].to_s %> баллов / <strong>F:</strong> <%= @report[:f].to_s %> баллов /
+    <strong>Тестируемый:</strong> <%= link_to(@report[:user].first[1][:last_name] + " " + @report[:user].first[1][:first_name] + " " + @report[:user].first[1][:patronymic], "/u_profile/index") %>
+  </div>
+</div>
+
 <div class="q-test-line"></div>
 <div class="q-test-result-box">
   <div id="chart_div_overall" class="q-test-result-chart"></div>
   <div class="q-test-result-chart-description">
-    <h4>Диагностика уровня усвоения учебного материала</h4>
+    <h4>Отношение максимального и полученных баллов</h4>
     <p>
       <strong>Max:</strong> максимально возможное количество баллов, которое можно набрать при выполнении настоящего теста.
     </p>
@@ -59,7 +67,7 @@
 <div class="q-test-result-box">
   <div id="chart_div_count_unit" class="q-test-result-chart"></div>
   <div class="q-test-result-chart-description">
-    <h4>Диагностика уровня усвоения учебного материала</h4>
+    <h4>Распределение верно, неверно решенных заданий, а также заданий, оставленных без ответа</h4>
     Процентное соотношение <strong>верно</strong> и <strong>неверно</strong> решенных заданий, а также заданий, на которые <strong>не были даны ответы</strong>.
   </div>
 </div>

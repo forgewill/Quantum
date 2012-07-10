@@ -180,6 +180,8 @@ class QTestController < ApplicationController
     #Output result
     @report = {}
 
+    @report[:user] = Neo4j.query{ ssid_obj = node(ssid_q[0].first[1].id);  user_type = node(2); user = node; ssid_obj > ':refers_to' > user < ':_all' > user_type; ret(user)}.to_a.first
+
     phs.each do |punit|
       @report[:max] = @report[:max].to_f + punit[:weight].to_f
       @report[:r_count] = @report[:r_count].to_i + 1 if punit[:solve] == 1
