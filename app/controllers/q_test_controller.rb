@@ -70,6 +70,8 @@ class QTestController < ApplicationController
     #f2bf330901b0f94a19dd0c6ebee1688a -> R
     #prlist = Neo4j.query{ test = node(test_id); pr = node; ph = node; test > ':consists_of' > ph > ':hold_on' > pr; ret(pr, ph).asc(ph[:position]) }.to_a
 
+    @report = {}
+
     test_id = params[:qtest_id].to_i
     ssid = params[:ssid]
     ssid_q = Neo4j.query { lookup(QResource, "title", ssid) }.to_a
@@ -126,7 +128,7 @@ class QTestController < ApplicationController
           rl_ratio = 0
 
           appliance_nodes.each do |anode|
-            r = phs.select { |p| p[:id] == anode.id.to_s }[0][:solve]
+            r = (phs.select { |p| p[:id] == anode.id.to_s }[0][:solve].to_s == "3" && 0) || phs.select { |p| p[:id] == anode.id.to_s }[0][:solve]
             l = QResource.find(ph[:id]).rels(:outgoing, :need_to_solve).to_other(QResource.find(anode.id)).first[:weight]
             sr_ratio = sr_ratio.to_f + r.to_f*l.to_f
             rl_ratio = rl_ratio.to_f + l.to_f
@@ -134,13 +136,14 @@ class QTestController < ApplicationController
           appliance_ratio = sr_ratio + (1 - rl_ratio)
 
           rsm[i][:f] = phs[i][:weight]*appliance_ratio
+
         end
 
         if appliance_nodes.count == 0 && trust_nodes.count > 0
           dt_ratio = 0
 
           trust_nodes.each do |tnode|
-            r = phs.select { |p| p[:id] == tnode.id.to_s }[0][:solve]
+            r = (phs.select { |p| p[:id] == tnode.id.to_s }[0][:solve].to_s == "3" && 0) || phs.select { |p| p[:id] == tnode.id.to_s }[0][:solve]
             l = QResource.find(tnode.id).rels(:outgoing, :need_to_solve).to_other(QResource.find(ph[:id])).first[:weight]
             dt_ratio = dt_ratio.to_f + ((l.to_f*(1-r.to_f))/trust_nodes.count.to_i)
           end
@@ -156,7 +159,7 @@ class QTestController < ApplicationController
           dt_ratio = 0
 
           appliance_nodes.each do |anode|
-            r = phs.select { |p| p[:id] == anode.id.to_s }[0][:solve]
+            r = (phs.select { |p| p[:id] == anode.id.to_s }[0][:solve].to_s == "3" && 0) || phs.select { |p| p[:id] == anode.id.to_s }[0][:solve]
             l = QResource.find(ph[:id]).rels(:outgoing, :need_to_solve).to_other(QResource.find(anode.id)).first[:weight]
             sr_ratio = sr_ratio.to_f + r.to_f*l.to_f
             rl_ratio = rl_ratio.to_f + l.to_f
@@ -164,7 +167,7 @@ class QTestController < ApplicationController
           appliance_ratio = sr_ratio + (1 - rl_ratio)
 
           trust_nodes.each do |tnode|
-            r = phs.select { |p| p[:id] == tnode.id.to_s }[0][:solve]
+            r = (phs.select { |p| p[:id] == tnode.id.to_s }[0][:solve].to_s == "3" && 0) || phs.select { |p| p[:id] == tnode.id.to_s }[0][:solve]
             l = QResource.find(tnode.id).rels(:outgoing, :need_to_solve).to_other(QResource.find(ph[:id])).first[:weight]
             dt_ratio = dt_ratio.to_f + ((l.to_f*(1-r.to_f))/trust_nodes.count.to_i)
           end
@@ -178,7 +181,6 @@ class QTestController < ApplicationController
     end
 
     #Output result
-    @report = {}
 
     @report[:user] = Neo4j.query{ ssid_obj = node(ssid_q[0].first[1].id);  user_type = node(2); user = node; ssid_obj > ':refers_to' > user < ':_all' > user_type; ret(user)}.to_a.first
 
