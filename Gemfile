@@ -29,6 +29,10 @@ gem 'will_paginate', '~> 3.0'
 #Graph Database
 gem 'neo4j', '2.0.0'
 
+gem 'ai4r'
+
+gem 'statsample'
+
 #Authentication
 #gem 'devise-neo4j',  :git => 'git://github.com/andreasronge/devise-neo4j.git'
 gem 'devise-neo4j', :git => 'git://github.com/forgewill/devise-neo4j.git'

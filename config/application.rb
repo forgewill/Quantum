@@ -6,6 +6,8 @@ require 'active_resource/railtie'
 require 'rails/test_unit/railtie'
 require 'will_paginate/railtie'
 require 'neo4j'
+require 'ai4r'
+require 'statsample'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
