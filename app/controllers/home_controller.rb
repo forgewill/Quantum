@@ -36,6 +36,7 @@ class HomeController < ApplicationController
 
     @index[:first_a] = @first[0]
     @index[:first_b] = @second[0]
+
   end
 
 end

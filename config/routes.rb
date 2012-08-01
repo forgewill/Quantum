@@ -1,4 +1,14 @@
 Quantum::Application.routes.draw do
+  get "q_matrix/index"
+
+  get "q_matrix/tree"
+
+  get "q_matrix/one"
+
+  get "index/tree"
+
+  get "index/one"
+
   post "q_test/solve"
 
   get "q_test/index"
