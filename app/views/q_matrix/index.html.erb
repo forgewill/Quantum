@@ -1,2 +1,41 @@
-<h1>QMatrix#index</h1>
+<h1>Матрица логических связей учебных элементов курса общей физики</h1>
 <p>Find me in app/views/q_matrix/index.html.erb</p>
+
+<% @qmatrix[:m].each_with_index do |theme, i| %>
+    <% if i==0 then %>
+        <% j = 1 %>
+        <div class="qmatrix-unit-cell-none"></div>
+        <div class="qmatrix-unit-cell-none"></div>
+        <% @qmatrix[:m].count.times do %>
+            <div class="qmatrix-unit-cell-number"><%= j %></div>
+            <% j=j+1 %>
+        <% end %>
+        <div class="clear-both"></div>
+    <% end %>
+
+    <% if i==0 then %>
+        <div class="qmatrix-unit-cell-none"></div>
+        <div class="qmatrix-unit-cell-none"></div>
+        <% @qmatrix[:m].count.times do %>
+            <div class="qmatrix-unit-cell-frequency"></div>
+        <% end %>
+        <div class="clear-both"></div>
+    <% end %>
+
+    <% j = 1 %>
+    <div class="qmatrix-unit-cell-number"><%= i+1 %></div>
+    <div class="qmatrix-unit-cell-frequency"></div>
+    <% @qmatrix[:m].count.times do %>
+        <% sbj_arr = @qmatrix[:m].find {|x| x[:note] == i+1} %>
+        <% obj_arr = @qmatrix[:m].find {|x| x[:note] == j} %>
+        <div class="qmatrix-unit-cell-default"><%= exrel_need_to_learn(sbj_arr[:id], obj_arr[:id]) %></div>
+        <% j=j+1 %>
+    <% end %>
+    <div class="clear-both"></div>
+<% end %>
+
+<% @qmatrix[:m].each_with_index do |theme, i| %>
+    note:<%=theme[:note] %> — id:<%=theme[:id] %><br />
+<% end %>
+
+
