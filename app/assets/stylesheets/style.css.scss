@@ -308,6 +308,9 @@ header .third-Panel .tp-Content .item  a:hover { color: #671293; }
 
 .qmatrix-unit-cell-none{ float: left; margin: 1px; width: 18px; height: 18px; }
 .qmatrix-unit-cell-default{ float: left; margin: 1px; width: 16px; height: 16px; border: 1px solid #e1e1e1; background-color: #f3f3f3; font-size: 10px; text-align: center; }
+.qmatrix-unit-cell-relation-good{ float: left; margin: 1px; width: 16px; height: 16px; border: 1px solid #87db9c; background-color: #97ffb6; font-size: 10px; text-align: center; }
+.qmatrix-unit-cell-relation-bad{ float: left; margin: 1px; width: 16px; height: 16px; border: 1px solid #cd776b; background-color: #ff9485; font-size: 10px; text-align: center; }
+.qmatrix-unit-cell-diagonal{ float: left; margin: 1px; width: 16px; height: 16px; border: 1px solid #e1e1e1; background-color: #f3f3f3; font-size: 10px; text-align: center; color: gray; }
 .qmatrix-unit-cell-number{ float: left; margin: 1px; width: 18px; height: 18px; text-align: center; font-size: 11px; color: gray; }
 .qmatrix-unit-cell-frequency{ float: left; margin: 1px; width: 16px; height: 16px; border: 1px solid #e6e5ef; background-color: #fbfaff; }
 

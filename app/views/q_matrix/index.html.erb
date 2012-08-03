@@ -1,5 +1,8 @@
 <h1>Матрица логических связей учебных элементов курса общей физики</h1>
-<p>Find me in app/views/q_matrix/index.html.erb</p>
+
+<p>Матрица логических связей (МЛС) конкретной учебной дисциплины строится следующим образом — дидактический материал разбивается на элементы содержания, каждому из которых присваивается номер, устанавливаемый в порядке последовательности предъявления, изучения тем данной дисциплины. При этом объем содержания элемента можно варьировать, увеличивая или уменьшая его в зависимости от целесообразности большей или меньшей степени детализации анализа. Нумерация элементов содержания дисциплины определяет нумерацию столбцов и строк матрицы А логических связей. В нашем случае это номера тем примерной программы курса физики для технических направлений подготовки специалистов (к стандартам ВПО третьего поколения).</p>
+
+<h2>1. Матрица логических связей</h2>
 
 <% @qmatrix[:m].each_with_index do |theme, i| %>
     <% if i==0 then %>
@@ -26,16 +29,25 @@
     <div class="qmatrix-unit-cell-number"><%= i+1 %></div>
     <div class="qmatrix-unit-cell-frequency"></div>
     <% @qmatrix[:m].count.times do %>
-        <% sbj_arr = @qmatrix[:m].find {|x| x[:note] == i+1} %>
-        <% obj_arr = @qmatrix[:m].find {|x| x[:note] == j} %>
-        <div class="qmatrix-unit-cell-default"><%= exrel_need_to_learn(sbj_arr[:id], obj_arr[:id]) %></div>
+        <% if i+1==j %>
+            <div class="qmatrix-unit-cell-diagonal">•</div>
+        <% else %>
+            <% if exrel_need_to_learn(@qmatrix[:m].find {|x| x[:note] == i+1}[:id], @qmatrix[:m].find {|x| x[:note] == j}[:id]) == "1" %>
+                <% if i+1<j %>
+                    <div class="qmatrix-unit-cell-relation-good"></div>
+                <% else %>
+                    <div class="qmatrix-unit-cell-relation-bad"></div>
+                <% end %>
+            <% else %>
+                <div class="qmatrix-unit-cell-default"></div>
+            <% end %>
+        <% end %>
         <% j=j+1 %>
     <% end %>
     <div class="clear-both"></div>
 <% end %>
 
-<% @qmatrix[:m].each_with_index do |theme, i| %>
-    note:<%=theme[:note] %> — id:<%=theme[:id] %><br />
+<h2>2. Характеристики учебных элементов</h2>
+<% @qmatrix[:p].each_with_index do |theme, i| %>
+   Note:<%= theme[:note] %> — Freq_V:<%= theme[:freq_v] %><br />
 <% end %>
-
-

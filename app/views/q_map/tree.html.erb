@@ -38,6 +38,27 @@
               </div>
           <% end %>
 
+          <% if res.outgoing(:is_type).first.title == 'Type_QChapter' || res.outgoing(:is_type).first.title == 'Type_QTheme' %>
+              <!--<span class="res-helpers">[id:<%= res.id %>] </span>-->
+              <% if avg.to_f < 3.5 %>
+                  <%=  image_tag("icons/star-small-empty.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "*") %>
+              <% end %>
+              <% if avg.to_f >= 3.5 && avg.to_f < 7 %>
+                  <%=  image_tag("icons/star-small-half.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "*") %>
+              <% end %>
+              <% if avg.to_f >= 7 %>
+                  <%=  image_tag("icons/star-small.png", :size => "16x16", :class => "q-tree-star-icon", :align => "left", :alt => "*") %>
+              <% end %>
+
+              <span class="res-helpers">[id:<%= res.id %>][note:<%= res.note %>] </span>
+              <strong><%= link_to res.title, q_map_tree_path() + "?root_id=" + res.id %></strong>
+              <span class="tree-helpers"> | </span>
+              <span class="q-tree-level-switcher">Уровень усвоения</span>
+              <span class="tree-helpers"> (≈ <%= avg %>)</span>
+
+              <br /><span class="description-comment"><%= res.description %></span>
+          <% end %>
+
       <% else %>
           <!--<span class="res-helpers">[id:<%= res.id %>] </span>-->
           <% if avg.to_f < 3.5 %>
