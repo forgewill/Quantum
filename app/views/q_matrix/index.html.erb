@@ -1,3 +1,63 @@
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+
+    google.setOnLoadCallback(drawChartFreqH);
+    google.setOnLoadCallback(drawChartFreqV);
+
+    function drawChartFreqH() {
+        var data = google.visualization.arrayToDataTable([
+            ['Cat'
+                <% @qmatrix[:p].each do |theme| %>
+                <%= ", " + theme[:note].to_s %>
+                <% end %>
+            ],
+            ['Частотность темы'
+                <% @qmatrix[:p].each do |theme| %>
+                <%= ", " + theme[:freq_h].to_s %>
+                <% end %>
+            ]
+        ]);
+
+        var options = {
+            fontName: 'Tahoma',
+            fontSize: 11,
+            bar: {groupWidth: '95%'},
+            chartArea: { left: 65, top: 10, width: 775, height: 300},
+            vAxis: { title: 'Частотность', titleTextStyle: {color: 'gray'}, gridlines: {count: 6}, minorGridlines: {count: 1, color: '#F1F1F1'}, minValue: 0}
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div_freq_h'));
+        chart.draw(data, options);
+    }
+
+    function drawChartFreqV() {
+        var data = google.visualization.arrayToDataTable([
+            ['Cat'
+                <% @qmatrix[:p].each do |theme| %>
+                <%= ", " + theme[:note].to_s %>
+                <% end %>
+            ],
+            ['Частота обращения к теме'
+                <% @qmatrix[:p].each do |theme| %>
+                <%= ", " + theme[:freq_v].to_s %>
+                <% end %>
+            ]
+        ]);
+
+        var options = {
+            fontName: 'Tahoma',
+            fontSize: 11,
+            bar: {groupWidth: '95%'},
+            chartArea: { left: 65, top: 10, width: 775, height: 300},
+            vAxis: { title: 'Частотность', titleTextStyle: {color: 'gray'}, gridlines: {count: 6}, minorGridlines: {count: 1, color: '#F1F1F1'}, minValue: 0}
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div_freq_v'));
+        chart.draw(data, options);
+    }
+
+</script>
 <h1>Матрица логических связей учебных элементов курса общей физики</h1>
 
 <p>Матрица логических связей (МЛС) конкретной учебной дисциплины строится следующим образом — дидактический материал разбивается на элементы содержания, каждому из которых присваивается номер, устанавливаемый в порядке последовательности предъявления, изучения тем данной дисциплины. При этом объем содержания элемента можно варьировать, увеличивая или уменьшая его в зависимости от целесообразности большей или меньшей степени детализации анализа. Нумерация элементов содержания дисциплины определяет нумерацию столбцов и строк матрицы А логических связей. В нашем случае это номера тем примерной программы курса физики для технических направлений подготовки специалистов (к стандартам ВПО третьего поколения).</p>
@@ -47,7 +107,12 @@
     <div class="clear-both"></div>
 <% end %>
 
-<h2>2. Характеристики учебных элементов</h2>
-<% @qmatrix[:p].each_with_index do |theme, i| %>
-   Note:<%= theme[:note] %> — Freq_V:<%= theme[:freq_v] %><br />
-<% end %>
+<h2 id="qmatrix-params-head">2. Характеристики учебных элементов</h2>
+<div id="qmatrix-params">
+  <h3>2.1 Частотность учебных элементов</h3>
+  <p>Сумма единиц по строке матрицы (то есть сумма по всем столбцам j при фиксированном номере строки i) определяет, насколько данная тема  необходима для усвоения тем (элементов содержания) учебной дисциплины, отображенных в столбцах МЛС. Учитывая, что в матрице конкретной, логически упорядоченной дисциплины восприятие, понимание, уровень усвоения темы может зависеть только от тем, ранее изученных, количественное отражение значимости темы строки определяется суммой всех единиц по строке, деленной на количество строк, следующих за данной строкой (n–i). Это отношение мы называем частотностью (частотой) использования (востребованности) темы данной строки. Именно таким образом определенная частотность темы (элемента содержания) отражает ее значимость для усвоения дидактических единиц, разделов дисциплины.</p>
+  <div id="chart_div_freq_h" class="q-matrix-result-chart"></div>
+  <h3>2.2 Частота обращения к учебным элементам</h3>
+  <div id="chart_div_freq_v" class="q-matrix-result-chart"></div>
+</div>
+

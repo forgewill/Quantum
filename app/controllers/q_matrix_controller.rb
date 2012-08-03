@@ -9,7 +9,7 @@ class QMatrixController < ApplicationController
 
     marray = []
     matrix.each_with_index do |theme,i|
-      marray[i] = {:note => theme.first[1][:note].to_i, :id => theme.first[1].id}
+      marray[i] = {:note => theme.first[1][:note].to_i, :id => theme.first[1].id, :title => theme.first[1][:title]}
     end
     marray = marray.sort_by {|hsh| hsh[:note]}
 
