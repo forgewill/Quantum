@@ -90,16 +90,16 @@
     <div class="qmatrix-unit-cell-frequency"></div>
     <% @qmatrix[:m].count.times do %>
         <% if i+1==j %>
-            <div class="qmatrix-unit-cell-diagonal">•</div>
+            <div class="qmatrix-unit-cell-diagonal" data-row="<%= i+1 %>" data-column="<%= j+1 %>">•</div>
         <% else %>
             <% if exrel_need_to_learn(@qmatrix[:m].find {|x| x[:note] == i+1}[:id], @qmatrix[:m].find {|x| x[:note] == j}[:id]) == "1" %>
                 <% if i+1<j %>
-                    <div class="qmatrix-unit-cell-relation-good"></div>
+                    <div class="qmatrix-unit-cell-relation-good" data-row="<%= i+1 %>" data-column="<%= j+1 %>" data-type="rel"></div>
                 <% else %>
-                    <div class="qmatrix-unit-cell-relation-bad"></div>
+                    <div class="qmatrix-unit-cell-relation-bad" data-row="<%= i+1 %>" data-column="<%= j+1 %>" data-type="rel"></div>
                 <% end %>
             <% else %>
-                <div class="qmatrix-unit-cell-default"></div>
+                <div class="qmatrix-unit-cell-default" data-row="<%= i+1 %>" data-column="<%= j+1 %>"></div>
             <% end %>
         <% end %>
         <% j=j+1 %>
@@ -107,7 +107,9 @@
     <div class="clear-both"></div>
 <% end %>
 
-<h2 id="qmatrix-params-head">2. Характеристики учебных элементов</h2>
+<br />>
+
+<h2>2. Характеристики учебных элементов</h2>
 <div id="qmatrix-params">
   <h3>2.1 Частотность учебных элементов</h3>
   <p>Сумма единиц по строке матрицы (то есть сумма по всем столбцам j при фиксированном номере строки i) определяет, насколько данная тема  необходима для усвоения тем (элементов содержания) учебной дисциплины, отображенных в столбцах МЛС. Учитывая, что в матрице конкретной, логически упорядоченной дисциплины восприятие, понимание, уровень усвоения темы может зависеть только от тем, ранее изученных, количественное отражение значимости темы строки определяется суммой всех единиц по строке, деленной на количество строк, следующих за данной строкой (n–i). Это отношение мы называем частотностью (частотой) использования (востребованности) темы данной строки. Именно таким образом определенная частотность темы (элемента содержания) отражает ее значимость для усвоения дидактических единиц, разделов дисциплины.</p>

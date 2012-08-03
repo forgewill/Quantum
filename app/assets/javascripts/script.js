@@ -223,6 +223,19 @@ $(document).ready(function(){
         $(this).css("border", "1px solid #e6e5ef");
         $(this).css("background-color", "#fbfaff");
     });
+
+    $("div [class*='qmatrix-unit-cell-']").mouseover(function(){
+        var row = $(this).attr('data-row');
+        var column = $(this).attr('data-column');
+        $("div[data-row='"+row+"'][data-type!='rel']").css("background-color", "#fcffe1");
+        $("div[data-column='"+column+"'][data-type!='rel']").css("background-color", "#fcffe1");
+    });
+    $("div [class*='qmatrix-unit-cell-']").mouseout(function(){
+        var row = $(this).attr('data-row');
+        var column = $(this).attr('data-column');
+        $("div [data-row='"+row+"'][data-type!='rel']").css("background-color", "#f3f3f3");
+        $("div [data-column='"+column+"'][data-type!='rel']").css("background-color", "#f3f3f3");
+    });
 });
 
 
