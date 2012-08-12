@@ -332,6 +332,28 @@ header .third-Panel .tp-Content .item  a:hover { color: #671293; }
 .q-test-result-stat-u { float: left; }
 .q-test-result-stat .m-15 { margin-left: 15px; }
 
+
+
+text {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.about {
+  fill: #777;
+  font-size: smaller;
+}
+
+.link {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
 footer .copyright { height: 25px; color: #8279c6; margin: 45px auto 0 auto; width: 940px; font-size: 10px; text-align: center; }
 footer .copyright a { color: #8279c6; }
 footer .copyright a:hover { color: #4b0b6c; }

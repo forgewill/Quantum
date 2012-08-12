@@ -2,10 +2,21 @@
 <p>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent dignissim aliquam ligula. Suspendisse potenti. Nulla lacinia mollis mattis. Vestibulum viverra, est at rhoncus molestie, ante orci vulputate arcu, sed faucibus lorem urna nec nisl. Ut a dui a enim cursus congue sed posuere dui. Integer non nulla a sem semper luctus.
 </p>
+
+<%= @index[:net].weights.each_with_index do |layer, i| %>
+    <% layer.each_with_index do |node, j| %>
+        <p><%= (i+1).to_s + "." + (j+1).to_s + " " + node[0].to_s + " | " + node[1].to_s %></p>
+    <% end %>
+<% end %>
+
+<p>EVAL = <%= @index[:eval] %></p>
+
+
 <h3>Диагностика уровня усвоения учебного материала</h3>
 <p>1. <%= link_to "Пробный тест #21", "/q_test/show?qtest_id=21" %></p>
 <p>2. <%= link_to "Пробный тест #21", "/q_test/show?qtest_id=21" %></p>
 <p>3. <%= link_to "Пробный тест #21", "/q_test/show?qtest_id=21" %></p>
+
 
 
 <%=raw Statsample::Graph::Histogram.new(@first).to_svg %>
@@ -18,14 +29,14 @@
 
 <strong>A:</strong>
 <% @first.each_with_index do |unit, index| %>
-<%= " " + unit.to_s %>
+    <%= " " + unit.to_s %>
 <% end %>
 
 <p>&nbsp;</p>
 
 <strong>B:</strong>
 <% @second.each_with_index do |unit, index| %>
-<%= " " + unit.to_s %>
+    <%= " " + unit.to_s %>
 <% end %>
 
 

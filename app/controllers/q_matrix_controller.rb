@@ -37,6 +37,18 @@ class QMatrixController < ApplicationController
   end
 
   def tree
+    if params[:root_id] != nil
+      root = QResource.find(params[:root_id])
+      root.incoming(:need_to_learn).each_with_index do |unit, i|
+        @matrix = '{"title": "Механические волны", "frequency": 1862, "parents": [{"title": "James Shanks", "frequency": 1831}, {"title": "James Shanks", "frequency": 1831}]}'
+      end
+    end
+
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render :json => @matrix }
+    end
   end
 
   def one
