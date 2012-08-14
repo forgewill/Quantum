@@ -36,12 +36,27 @@ class QMatrixController < ApplicationController
     @qmatrix[:p] = parray
   end
 
+
+  def wr_tree (id)
+    #tree = '{'
+    #tree = '{"title": "Динамика системы материальных точек", "frequency": 5, "parents": [{"title": "Динамика материальной точки. Законы Ньютона", "frequency": 5, "parents": [{"title": "Кинематика материальной точки и твердого тела", "frequency": 5}]}, {"title": "Кинематика материальной точки и твердого тела", "frequency": 5}]}'
+    #unit = QResource.find(id)
+    #tree = tree + '"title": ' + '"' + unit.title.to_s + '", "frequency": 5'
+    #if unit.incoming(:need_to_learn).count > 0
+    #  tree = tree + '"parents": ['
+    #  unit.incoming(:need_to_learn).each_with_index do |parent, i|
+    #     tree = tree + wr_tree(parent.id)
+    #  end
+    #  tree = tree + ']'
+    #end
+    #tree = tree + '}'
+    result = tree
+  end
+
   def tree
+
     if params[:root_id] != nil
-      root = QResource.find(params[:root_id])
-      root.incoming(:need_to_learn).each_with_index do |unit, i|
-        @matrix = '{"title": "Механические волны", "frequency": 1862, "parents": [{"title": "James Shanks", "frequency": 1831}, {"title": "James Shanks", "frequency": 1831}]}'
-      end
+      @matrix = wr_tree(params[:root_id])
     end
 
 

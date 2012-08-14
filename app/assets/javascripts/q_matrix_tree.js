@@ -21,7 +21,7 @@ if (window.location.pathname == "/q_matrix/tree") {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    d3.json("tree.json?root_id=83", function(json) {
+    d3.json("tree.json?root_id=67", function(json) {
         var nodes = tree.nodes(json);
 
         var link = svg.selectAll(".link")
