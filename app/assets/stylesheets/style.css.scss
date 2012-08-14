@@ -334,23 +334,21 @@ header .third-Panel .tp-Content .item  a:hover { color: #671293; }
 
 
 
-text {
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+.node circle {
+  cursor: pointer;
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
 }
 
-.name {
-  font-weight: bold;
+.node text {
+  font-size: 11px;
 }
 
-.about {
-  fill: #777;
-  font-size: smaller;
-}
-
-.link {
+path.link {
   fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+  stroke: #ccc;
+  stroke-width: 1.5px;
 }
 
 

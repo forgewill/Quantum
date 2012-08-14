@@ -38,18 +38,27 @@ class QMatrixController < ApplicationController
 
 
   def wr_tree (id)
-    #tree = '{'
-    #tree = '{"title": "Динамика системы материальных точек", "frequency": 5, "parents": [{"title": "Динамика материальной точки. Законы Ньютона", "frequency": 5, "parents": [{"title": "Кинематика материальной точки и твердого тела", "frequency": 5}]}, {"title": "Кинематика материальной точки и твердого тела", "frequency": 5}]}'
-    #unit = QResource.find(id)
-    #tree = tree + '"title": ' + '"' + unit.title.to_s + '", "frequency": 5'
-    #if unit.incoming(:need_to_learn).count > 0
-    #  tree = tree + '"parents": ['
-    #  unit.incoming(:need_to_learn).each_with_index do |parent, i|
-    #     tree = tree + wr_tree(parent.id)
-    #  end
-    #  tree = tree + ']'
-    #end
-    #tree = tree + '}'
+    tree = '{'
+    unit = QResource.find(id)
+    tree = tree + '"name": ' + '"' + unit.id.to_s + '", "frequency": 5'
+    if unit.incoming(:need_to_learn).count > 0
+      tree = tree + ', "children": ['
+      ch_count = unit.incoming(:need_to_learn).count
+      unit.incoming(:need_to_learn).each_with_index do |parent, i|
+        if ch_count == 1
+          tree = tree + wr_tree(parent.id)
+        end
+        if ch_count > 1
+          if ch_count == i+1
+            tree = tree + wr_tree(parent.id)
+          else
+            tree = tree + wr_tree(parent.id) + ", "
+          end
+        end
+      end
+      tree = tree + ']'
+    end
+    tree = tree + '}'
     result = tree
   end
 
@@ -57,6 +66,8 @@ class QMatrixController < ApplicationController
 
     if params[:root_id] != nil
       @matrix = wr_tree(params[:root_id])
+      #@matrix = QResource.find(params[:root_id]).incoming(:need_to_learn).depth(5)
+      #@matrix = '{"name": "67", "children": [{"name": "66", "children": [{"name": "65"}]}, {"name": "65"}]}'
     end
 
 

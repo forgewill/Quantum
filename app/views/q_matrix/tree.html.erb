@@ -2,3 +2,6 @@
 <p>Древовидная структура логических связей учебных элементов, необходимых для изучение выбранного.</p>
 <p><%= @matrix %></p>
 <div id="q-matrix-tree-chart"></div>
+<% QResource.find(67).incoming(:need_to_learn).each do |unit| %>
+    <p><%= unit.id %></p>
+<% end %>
