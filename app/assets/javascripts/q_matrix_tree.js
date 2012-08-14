@@ -6,8 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 if (window.location.pathname == "/q_matrix/tree") {
-    var m = [20, 120, 20, 120],
-        w = 1280 - m[1] - m[3],
+    var m = [20, 50, 20, 50],
+        w = 900 - m[1] - m[3],
         h = 800 - m[0] - m[2],
         i = 0,
         root;
@@ -24,7 +24,7 @@ if (window.location.pathname == "/q_matrix/tree") {
         .append("svg:g")
         .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
 
-    d3.json("tree.json?root_id=83", function(json) {
+    d3.json("tree.json?root_id=87", function(json) {
         root = json;
         root.x0 = h / 2;
         root.y0 = 0;
@@ -48,7 +48,7 @@ if (window.location.pathname == "/q_matrix/tree") {
         var nodes = tree.nodes(root).reverse();
 
         // Normalize for fixed-depth.
-        nodes.forEach(function(d) { d.y = d.depth * 180; });
+        //nodes.forEach(function(d) { d.y = d.depth * 180; });
 
         // Update the nodes…
         var node = vis.selectAll("g.node")
@@ -77,7 +77,7 @@ if (window.location.pathname == "/q_matrix/tree") {
             .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
         nodeUpdate.select("circle")
-            .attr("r", 4.5)
+            .attr("r", 7)
             .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
         nodeUpdate.select("text")
