@@ -1,5 +1,5 @@
 <h1>QMatrix#one</h1>
 <p>Find me in app/views/q_matrix/one.html.erb</p>
 <% 45.times do |i| %>
-    note:<%= QResource.find(i+65).note %> — id:<%= QResource.find(i+65).id %><br/>
+    <p>note:<%= QResource.find(i+65).note %> — id:<%= QResource.find(i+65).id %> — <%= QResource.find(i+65).title %></p>
 <% end %>

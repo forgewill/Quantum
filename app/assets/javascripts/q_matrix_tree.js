@@ -5,10 +5,26 @@
  * Time: 14:03
  * To change this template use File | Settings | File Templates.
  */
+function url_query( query ) {
+    query = query.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var expr = "[\\?&]"+query+"=([^&#]*)";
+    var regex = new RegExp( expr );
+    var results = regex.exec( window.location.href );
+    if( results !== null ) {
+        return results[1];
+        return decodeURIComponent(results[1].replace(/\+/g, " "));
+    } else {
+        return false;
+    }
+}
 if (window.location.pathname == "/q_matrix/tree") {
+
+    var root_id_value = url_query('root_id');
+
+
     var m = [20, 50, 20, 50],
-        w = 900 - m[1] - m[3],
-        h = 800 - m[0] - m[2],
+        w = 940 - m[1] - m[3],
+        h = 600 - m[0] - m[2],
         i = 0,
         root;
 
@@ -24,7 +40,7 @@ if (window.location.pathname == "/q_matrix/tree") {
         .append("svg:g")
         .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
 
-    d3.json("tree.json?root_id=87", function(json) {
+    d3.json("tree.json?root_id="+root_id_value, function(json) {
         root = json;
         root.x0 = h / 2;
         root.y0 = 0;

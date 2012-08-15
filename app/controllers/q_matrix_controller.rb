@@ -40,7 +40,7 @@ class QMatrixController < ApplicationController
   def wr_tree (id)
     tree = '{'
     unit = QResource.find(id)
-    tree = tree + '"name": ' + '"' + unit.note.to_s + '", "frequency": 5'
+    tree = tree + '"name": ' + '"' + unit.id.to_s + '", "frequency": 5'
     if unit.incoming(:need_to_learn).count > 0
       tree = tree + ', "children": ['
       ch_count = unit.incoming(:need_to_learn).count
